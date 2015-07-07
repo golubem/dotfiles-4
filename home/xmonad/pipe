@@ -22,3 +22,4 @@ nsBrowserAccess.prototype.openURI@chrome://browser/content/browser.js:15357:21
 WARNING: content window passed to PrivateBrowsingUtils.isWindowPrivate. Use isContentWindowPrivate instead (but only for frame scripts).
 pbu_isWindowPrivate@resource://gre/modules/PrivateBrowsingUtils.jsm:25:14
 nsBrowserAccess.prototype.openURI@chrome://browser/content/browser.js:15357:21
+[24m[0m

@@ -33,7 +33,7 @@ backup_and_link() {
         echo -n "Moving $file to $olddir/$1 ..."
         mv $workdir/$prefix$file ~/dotfiles_old/ && echo "done"
         echo -n "Creating symlink to $file in home directory ..."
-        ln -s $dir/$file $workdir/$prefix$file && echo "done"
+        ln -s $dir/$1/$file $workdir/$prefix$file && echo "done"
     done
 }
 

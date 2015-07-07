@@ -5,7 +5,6 @@ olddir=~/dotfiles_old
 
 workdirs="home config"
 
-# Create folder for backups if not exists
 create_dir() {
     if [[ ! -d "$1" ]]; then
         echo -n "Creating $1 for backup of any existing dotfiles in $HOME ..."
@@ -14,14 +13,6 @@ create_dir() {
     fi
 }
 
-create_dir $olddir
-
-# cd to dotfiles dir
-echo -n "Going to $dir ..."
-cd $dir
-echo "done"
-
-# Move files from ~ to olddir then creating symlink from dir to ~
 backup_and_link() {
     prefix=""
     case $1 in
@@ -36,6 +27,12 @@ backup_and_link() {
         ln -s $dir/$1/$file $workdir/$prefix$file && echo "done"
     done
 }
+
+create_dir $olddir
+
+echo -n "Going to $dir ..."
+cd $dir
+echo "done"
 
 for cur_dir in $workdirs; do
     create_dir $olddir/$cur_dir

@@ -1,0 +1,15 @@
+set flushinput False
+rename Hunter_X_Hunter_[16_of_62]_[ru_jp]_[MifSnaiper_&_Animereactor_Ru]q.srt
+set preview_images True
+
+open_with 
+open_with firefox
+open_with `
+set draw_borders
+delete sudo
+sudo rm -rf
+q
+Q
+delete
+rename VirtualBox VMs
+search udis

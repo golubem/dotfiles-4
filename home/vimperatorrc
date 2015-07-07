@@ -1,0 +1,18 @@
+colorscheme twily
+
+set animations=true
+set hintmatching=fuzzy
+set complete="lS"
+"set defsearch=duckduckgo
+set hintchars=fjdkslaghrueiwovncm
+set gui=nonavigation
+
+noremap K gt
+noremap J gT
+noremap j <down>
+noremap k <up>
+
+com vk open vk.com
+com lor open linux.org.ru
+
+inoremap <C-a> <Insert><C-a><Insert>

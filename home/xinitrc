@@ -1,0 +1,37 @@
+#!/bin/sh
+#
+# ~/.xinitrc
+#
+# Executed by startx (run your window manager from here)
+
+# Load configs
+if [ -d /etc/X11/xinit/xinitrc.d ]; then
+  for f in /etc/X11/xinit/xinitrc.d/*; do
+    [ -x "$f" ] && . "$f"
+  done
+  unset f
+fi
+
+# Pulseaudio
+start-pulseaudio-x11
+
+# Set keyboard layout settings
+setxkbmap -layout us,ru
+setxkbmap -option 'grp:alt_space_toggle'
+setxkbmap -option 'grp:toggle'
+kbdd
+
+# Autorun
+urxvtd &
+compton &                                 # Compositing manager
+feh --bg-scale ~/.xmonad/wall.png --bg-scale ~/.xmonad/wall.png &  # Background
+xsetroot -cursor_name left_ptr &                # Set cursor on root
+xautolock -time 10 -locker 'lock.sh' &          # Autolock
+pidgin &
+stalonetray &
+udisks-glue -f &
+clipit &
+#twmnd &
+
+# Exec WM
+xmonad > ~/.xmonad/pipe

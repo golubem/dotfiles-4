@@ -1,0 +1,53 @@
+Config { font = "xft:terminus:size=9,Ionicons:size=9"
+       , bgColor =      "#1d1f21"
+       , fgColor =      "#c5c8c6"
+       , position =     TopP 20 20
+       --, position =     TopSize C 100 25
+       , iconRoot =     "."
+       , textOffset =   -3
+       --, iconOffset = -2
+       , allDesktops = True
+       , overrideRedirect = True
+       , pickBroadest = False
+
+       , template = "%UnsafeStdinReader% }{ %wlp3s0wi%  %cpu%  %battery%  %default:Master%  <fc=#ee9a00>%date%</fc> <action=`xkb-switch -n`>%kbd%</action> "
+
+       , commands = [ Run BatteryP ["BAT1"] [ "--template" , "<acstatus>"
+                                , "--Low"       , "20"        -- units: %
+                                , "--High"      , "70"        -- units: %
+                                , "--low"       , "#d28445"
+                                , "--high"      , "#8c9440"
+                                , "-w"          , "3"
+                                , "--"
+                                , "-f"          , "/sys/class/power_supply/ACAD/online"
+                                , "-o"          , "<fc=#8c9440> <left>%</fc>"
+                                , "-O"          , "<fc=#8c9440> <left>%</fc>"
+                                , "-i"          , "<fc=#8c9440> <left>%</fc>"
+                                ] 15
+                    , Run Wireless "wlp3s0" [ "--template" ,
+                                "<action=`urxvtc -e sudo wifi-menu`><fc=#5f819d> <quality>%</fc></action>", "-w", "3"] 5
+                    , Run Cpu [ "--template" , "<action=`urxvtc -e htop`><fc=#85678f> <total>%</fc></action>", "-w", "3"] 15
+    		        , Run Date "<fc=#c5c8c6>%H:%M:%S</fc>" "date" 10
+                    , Run Kbd [("us", "EN"), ("ru", "RU")]
+                    , Run Volume "default" "Master" [ "--template" , "<action=`amixer -q set Master toggle`><status></action>"
+                                        , "-w"          , "3"
+                                        , "--"
+                                        , "-c"          , "#aa759f"
+                                        , "-o"          , " <volume>%"
+                                        , "-C"          , "#8c9440"
+                                        , "-O"          , " <volume>%"
+                                        ] 1
+                    --, Run MPD ["-t", "<action=`urxvtc -e ncmpcpp`><statei></action>", "--"
+                    --           , "-P", "<fc=#6e9329> <artist>(<album>) - <title></fc>"
+                    --           , "-Z", "<fc=#b3cfba> <artist>(<album>) - <title></fc>"
+                    --           , "-S", "<fc=#653040> mpd - stopped</fc>"
+                    --           ] 10
+                    , Run UnsafeStdinReader
+                    ]
+       , sepChar = "%"
+       , alignSep = "}{"
+       }
+
+
+
+

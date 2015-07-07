@@ -1,0 +1,248 @@
+"======================================================================
+" Base settings
+"======================================================================
+
+syntax on
+set encoding        =utf-8
+set number
+set incsearch
+set wrap
+set autoread
+set linebreak
+set scrolljump      =4
+set scrolloff       =4
+set ruler
+set ignorecase
+set smartcase
+set clipboard       =unnamedplus
+set hidden
+set modeline
+set modelines       =5
+set colorcolumn     =80
+
+let mapleader=","
+
+"Normal text navigation
+nnoremap j gj
+nnoremap k gk
+vnoremap j gj
+vnoremap k gk
+nnoremap <Down> gj
+nnoremap <Up> gk
+vnoremap <Down> gj
+vnoremap <Up> gk
+inoremap <Down> <C-o> j
+inoremap <Up> <C-o> k
+
+
+if has("gui_running")
+    set guifont=Droid\ Sans\ Mono\ 10
+    set guioptions-=m  "remove menubar
+    set guioptions-=T  "remove toolbar
+    set guioptions-=r  "remove right-hand scroll bar
+    set guioptions-=L
+endif
+
+"======================================================================
+" Tabs
+"======================================================================
+
+set tabstop=4
+set shiftwidth=4
+set softtabstop=4
+set expandtab
+
+"======================================================================
+" History
+"======================================================================
+
+set history=64
+set undolevels=128
+set undodir=~/.vim/undodir/
+set undofile
+set undolevels=1000
+set undoreload=10000
+
+"======================================================================
+" Manage buffers
+"======================================================================
+
+nmap <leader>b :CtrlPBuffer<cr>
+
+" Open new buffers in split
+nmap <leader>s<left>   :leftabove  vnew<cr>
+nmap <leader>s<right>  :rightbelow vnew<cr>
+nmap <leader>s<up>     :leftabove  new<cr>
+nmap <leader>s<down>   :rightbelow new<cr>
+
+" Tab between buffers
+noremap <tab> <c-w><c-w>
+
+" Tabs navigation
+nnoremap X              :bp <bar> bd #<cr>
+nnoremap K              :bn<cr>
+nnoremap J              :bp<cr>
+
+"======================================================================
+" Vundle plugins and settings
+"======================================================================
+
+set nocompatible
+filetype off
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+Plugin 'gmarik/Vundle.vim'
+
+" My Plugins
+Plugin 'tpope/vim-rake'
+Plugin 'tpope/vim-bundler'
+Plugin 'tpope/vim-rails' 
+Plugin 'junegunn/vim-easy-align'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'bronson/vim-trailing-whitespace'
+Plugin 'SirVer/ultisnips'           " Snippets
+Bundle 'ervandew/supertab'
+Plugin 'honza/vim-snippets'
+Plugin 'jvirtanen/vim-octave'
+Plugin 'tpope/vim-sensible'         " Some features for noobs
+Plugin 'tpope/vim-fugitive'         " Git wrapper for vim
+Plugin 'scrooloose/syntastic'       " Multi syntax
+Plugin 'scrooloose/nerdtree'        " File explorer
+Plugin 'kien/ctrlp.vim'             " Fuzzy search for everything
+Plugin 'slim-template/vim-slim'     " Syntax highlight
+Plugin 'Valloric/YouCompleteMe'     " Code completer
+Plugin 'rdnetto/YCM-Generator'      " .extra_conf.py generator
+Plugin 'xuhdev/SingleCompile.git'
+Plugin 'suan/vim-instant-markdown'  " Markdown with prewiew
+"Plugin 'vim-scripts/Conque-GDB'
+Plugin 'tpope/vim-surround'
+Plugin 'scrooloose/nerdcommenter'   " Comment tool
+Plugin 'bling/vim-airline'          " Powerline
+Plugin 'eagletmt/neco-ghc'          " Haskell completion
+Plugin 'lervag/vimtex'              " LaTeX
+Plugin 'davidhalter/jedi-vim'
+Plugin 'w0ng/vim-hybrid'
+
+call vundle#end()
+filetype plugin indent on
+
+"=====================================================================
+" EZ Plugins configs
+"=====================================================================
+" Easy align interactive
+vnoremap <silent> <Enter> :EasyAlign<cr>
+
+" Let ctrlP search in hidden files
+let g:ctrlp_show_hidden = 1
+
+"=====================================================================
+" Vimtex
+"=====================================================================
+let g:vimtex_view_method = 'zathura'
+let g:vimtex_fold_enabled = 0
+"let g:vimtex_fold_automatic = 1
+
+let g:vimtex_latexmk_options = '-pdf -shell-escape'
+let g:vimtex_view_general_viewer = 'zathura'
+
+if !exists('g:ycm_semantic_triggers')
+    let g:ycm_semantic_triggers = {}
+endif
+let g:ycm_semantic_triggers.tex = [
+     \ 're!\\[A-Za-z]*(ref|cite)[A-Za-z]*([^]]*])?{([^}]*, ?)*'
+     \ ]
+"======================================================================
+" Airline
+"======================================================================
+
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_powerline_fonts=1
+let g:airline_symbols={}
+let g:airline_left_sep = ''
+let g:airline_left_alt_sep = ''
+let g:airline_right_sep = ''
+let g:airline_right_alt_sep = ''
+let g:airline_symbols.branch = ''
+let g:airline_symbols.readonly = ''
+let g:airline_symbols.linenr = ''
+
+"======================================================================
+" YCM
+"======================================================================
+
+let g:ycm_global_ycm_extra_conf = '.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
+let g:ycm_add_preview_to_completeopt = 0
+let g:ycm_autoclose_preview_window_after_completion = 1
+let g:ycm_autoclose_preview_window_after_insertion = 1
+let g:ycm_collect_identifiers_from_tags_files = 1
+let g:ycm_complete_in_comments = 1
+set shortmess=a
+set completeopt-=preview
+let g:ycm_semantic_triggers = {'haskell' : ['.']}
+
+" make YCM compatible with UltiSnips (using supertab)
+let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+let g:SuperTabDefaultCompletionType = '<C-n>'
+
+" better key bindings for UltiSnipsExpandTrigger
+let g:UltiSnipsExpandTrigger = "<C-j>"
+let g:UltiSnipsJumpForwardTrigger = "<tab>"
+let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
+
+
+"======================================================================
+" Syntastic
+"======================================================================
+
+let g:syntastic_check_on_open=1
+let g:syntastic_enable_signs=1
+let g:syntastic_cpp_include_dirs = ['/usr/include/' ]
+let g:syntastic_cpp_check_header = 1
+let g:syntastic_cpp_remove_include_errors = 1
+let g:syntastic_c_checkers=['make']
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_check_on_open=1
+let g:syntastic_enable_signs=1
+let g:syntastic_error_symbol = '✗'
+let g:syntastic_warning_symbol = '⚠'
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*gbar
+let g:syntastic_cpp_compiler='clang++'
+let g:syntastic_cpp_compiler_options=' -std=c++11 -stdlib=libc++'
+
+"======================================================================
+" Better autocomplete for ruby
+"======================================================================
+
+autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1
+autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
+autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
+let g:ycm_server_keep_logfiles = 1
+let g:ycm_server_log_level = 'debug'
+
+"======================================================================
+" Automatic formatting
+"======================================================================
+
+autocmd BufWritePre *.rb :%s/\s\+$//e
+autocmd BufWritePre *.go :%s/\s\+$//e
+autocmd BufWritePre *.haml :%s/\s\+$//e
+autocmd BufWritePre *.html :%s/\s\+$//e
+autocmd BufWritePre *.scss :%s/\s\+$//e
+autocmd BufWritePre *.slim :%s/\s\+$//e
+
+"======================================================================
+" NERDTree
+"======================================================================
+
+nmap <leader>m :NERDTreeToggle<CR>
+let NERDTreeHighlightCursorline=1
+let NERDTreeIgnore = ['.yardoc', 'pkg']
+
+
+
+
+colorscheme hybrid

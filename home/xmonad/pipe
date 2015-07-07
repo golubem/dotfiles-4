@@ -1,0 +1,24 @@
+gvim
+[24m[0mfirefox
+rgvim
+firefox
+firefox
+WARNING: content window passed to PrivateBrowsingUtils.isWindowPrivate. Use isContentWindowPrivate instead (but only for frame scripts).
+pbu_isWindowPrivate@resource://gre/modules/PrivateBrowsingUtils.jsm:25:14
+nsBrowserAccess.prototype.openURI@chrome://browser/content/browser.js:15357:21
+firefox
+firefox
+gimp
+firefox
+firefox
+firefox
+firefox
+mpv
+FB Could not look for a mime type for https://mail.haskell.org/pipermail/xmonad/2011-March/011164.html
+FB [Exception... "Component returned failure code: 0x80040111 (NS_ERROR_NOT_AVAILABLE) [nsIHttpChannel.getResponseHeader]"  nsresult: "0x80040111 (NS_ERROR_NOT_AVAILABLE)"  location: "JS frame :: jar:file:///home/anton/.mozilla/firefox/jvsvo40x.default-1428351703416/extensions/fb2reader@clear.com.ua.xpi!/components/fb2reader.js :: FB_Reader.prototype.getMIMETypeFromContent :: line 87"  data: no]
+WARNING: content window passed to PrivateBrowsingUtils.isWindowPrivate. Use isContentWindowPrivate instead (but only for frame scripts).
+pbu_isWindowPrivate@resource://gre/modules/PrivateBrowsingUtils.jsm:25:14
+nsBrowserAccess.prototype.openURI@chrome://browser/content/browser.js:15357:21
+WARNING: content window passed to PrivateBrowsingUtils.isWindowPrivate. Use isContentWindowPrivate instead (but only for frame scripts).
+pbu_isWindowPrivate@resource://gre/modules/PrivateBrowsingUtils.jsm:25:14
+nsBrowserAccess.prototype.openURI@chrome://browser/content/browser.js:15357:21

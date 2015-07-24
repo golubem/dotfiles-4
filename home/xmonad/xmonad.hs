@@ -1,6 +1,5 @@
 import XMonad
 import Data.Monoid
-import System.Exit
 
 import XMonad.Layout.Fullscreen
 import XMonad.Layout.Named
@@ -25,9 +24,6 @@ import XMonad.Prompt.RunOrRaise
 import XMonad.Prompt.Shell
 import XMonad.Actions.GridSelect
 
-import System.IO
-import Data.Monoid
-import Data.List
 import Data.Ratio ((%))
 import qualified XMonad.StackSet as W
 import qualified Data.Map        as M
@@ -66,7 +62,8 @@ myXPConfig = defaultXPConfig { font        = "xft:Terminus:pixelsize=13"
 -- Key bindings. Add, modify or remove key bindings here.
 ------------------------------------------------------------------------
 
-myKeys = [ ("M-f",                      withFocused $ \f -> windows =<< appEndo `fmap` runQuery doFullFloat f)
+myKeys = [ ("M-f",                      sendMessage $ Toggle NBFULL)
+         --[ ("M-f",                      withFocused $ \f -> windows =<< appEndo `fmap` runQuery doFullFloat f)
          , ("M-m",                      sendMessage ToggleStruts)
          , ("M1-<F4>",                  kill)
          , ("M-q",                      spawn "pkill -KILL xmobar || xmonad --recompile && xmonad --restart")
@@ -139,7 +136,9 @@ myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList $
 -- Layouts
 ------------------------------------------------------------------------
 
-myLayout = (fullscreenFloat . fullscreenFull . smartBorders)
+myLayout
+    = smartBorders
+    -- $ mkToggle (single NBFULL)
     $ onWorkspace (myWorkspaces !! 8) pidginLayot
     $ named "[T]" tiled |||
       named "[M]" (Mirror tiled) |||
@@ -161,7 +160,7 @@ myManageHook = composeAll
     , className =? "Firefox"            --> doShift (myWorkspaces !! 0)
     , className =? "Plugin-container"   --> doFloat
     , className =? "Pidgin"             --> doShift (myWorkspaces !! 8)
-    , className =? "mpv"                --> doShift (myWorkspaces !! 7) >> doFloat
+    --, className =? "mpv"                --> doShift (myWorkspaces !! 7) >> doFloat
     , isDialog                          --> doFloat
     , resource  =? "desktop_window"     --> doIgnore
     ]
@@ -229,12 +228,11 @@ myStartupHook = return()
 
 main = do
     xmproc <- spawnPipe ".cabal/bin/xmobar 2> ~/err"
-    xmonad $ withNavigation2DConfig myNavigation2DConfig
-           $ defaults xmproc
+    xmonad $ defaults xmproc
 
-myNavigation2DConfig = defaultNavigation2DConfig { layoutNavigation     = [("Full", centerNavigation)]
-                                                 , unmappedWindowRect   = [("Full", singleWindowRect)]
-                                                 }
+--myNavigation2DConfig = defaultNavigation2DConfig { layoutNavigation     = [("Full", centerNavigation)]
+--                                                 , unmappedWindowRect   = [("Full", singleWindowRect)]
+--                                                 }
 defaults xmproc = defaultConfig
     { terminal            = myTerminal
       ,focusFollowsMouse  = myFocusFollowsMouse
@@ -245,7 +243,7 @@ defaults xmproc = defaultConfig
       ,normalBorderColor  = myNormalBorderColor
       ,focusedBorderColor = myFocusedBorderColor
       ,mouseBindings      = myMouseBindings
-      ,layoutHook         = avoidStruts myLayout
+      ,layoutHook         = mkToggle (single NBFULL) $ avoidStruts myLayout
       ,manageHook         = fullscreenManageHook <+> myManageHook
       ,handleEventHook    = fullscreenEventHook <+> myEventHook
       ,logHook            = myLogHook xmproc

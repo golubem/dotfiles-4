@@ -1,4 +1,4 @@
-Config { font = "xft:terminus:size=9,Ionicons:size=9"
+Config { font = "xft:Terminus:size=9,Ionicons:size=9"
        , bgColor =      "#1d1f21"
        , fgColor =      "#c5c8c6"
        , position =     TopP 20 20

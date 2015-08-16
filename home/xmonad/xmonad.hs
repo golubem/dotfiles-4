@@ -220,7 +220,17 @@ myScratchPads = [ NS "terminal" "urxvtc -name 'scratchpad' -e bash -c 'tmux a -t
 ------------------------------------------------------------------------
 -- Startup hook
 ------------------------------------------------------------------------
-myStartupHook = return()
+myStartupHook = do
+    spawn "pidgin"
+    spawn "urxvtd &"
+    spawn "compton &"
+    spawn "feh --bg-scale ~/.xmonad/wall.png --bg-scale ~/.xmonad/wall.png &"
+    spawn "xsetroot -cursor_name left_ptr &"
+    spawn "xautolock -time 10 -locker 'lock.sh' &"
+    spawn "pidgin &"
+    spawn "stalonetray &"
+    spawn "udisks-glue -f &"
+    spawn "clipit &"
 
 ------------------------------------------------------------------------
 -- Now run xmonad with all the defaults we set up.

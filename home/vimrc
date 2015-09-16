@@ -19,6 +19,7 @@ set hidden
 set modeline
 set modelines       =5
 set colorcolumn     =80
+set incsearch
 
 let mapleader=","
 
@@ -36,7 +37,10 @@ inoremap <Up> <C-o> k
 
 
 if has("gui_running")
-    set guifont=Droid\ Sans\ Mono\ 10
+    "set guifont=Droid\ Sans\ Mono\ 10
+    "set guifont=Hack\ Regular\ 9
+    "set guifont=Anonumous\ Pro\ for\ Powerline\ 11
+    "set guifont=Source\ Code\ Pro\ for\ Powerline\ 11
     set guioptions-=m  "remove menubar
     set guioptions-=T  "remove toolbar
     set guioptions-=r  "remove right-hand scroll bar
@@ -95,6 +99,7 @@ call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 
 " My Plugins
+Plugin 'vim-scripts/dbext.vim'
 Plugin 'tpope/vim-rake'
 Plugin 'tpope/vim-bundler'
 Plugin 'tpope/vim-rails' 

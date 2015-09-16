@@ -60,3 +60,8 @@ XTerm*iconName: /usr/share/icons/Faenza/apps/32/xterm.png
 *.color7:       #707880
 *.color15:      #c5c8c6
 
+!---------------------------------------------------------------------
+! Dzen
+dzen2.font:       -*-terminus-9-*-*-*-*-*-*-*-*-*-*-*
+dzen2.foreground: #c5c8c6
+dzen2.background: #1d1f21

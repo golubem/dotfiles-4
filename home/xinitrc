@@ -13,7 +13,7 @@ fi
 ######################################################################
 # Pulseaudio
 ######################################################################
-start-pulseaudio-x11 &
+# start-pulseaudio-x11 &
 
 ######################################################################
 # Set keyboard layout settings
@@ -23,7 +23,18 @@ setxkbmap -option 'grp:alt_space_toggle'
 setxkbmap -option 'grp:toggle'
 kbdd &
 
+pidgin &
+urxvtd &
+compton &
+feh --bg-scale ~/.xmonad/wall.png --bg-scale ~/.xmonad/wall.png &
+xsetroot -cursor_name left_ptr &
+xautolock -time 10 -locker 'lock.sh' &
+stalonetray &
+udisks-glue -f &
+clipit &
+twmnd &
+
 ######################################################################
 # Exec WM
 ######################################################################
-xmonad
+xmonad > ~/.xmonad/pipe

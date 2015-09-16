@@ -1,14 +1,16 @@
 import XMonad
 import Data.Monoid
 
-import XMonad.Layout.Fullscreen
+import XMonad.Hooks.SetWMName                   -- to fix java's grey windows
+import XMonad.Hooks.EwmhDesktops                -- to automaticly expand fullscreen apps
+import XMonad.Layout.Fullscreen                 -- to manualy expend app to fullscreen
 import XMonad.Layout.Named
-import XMonad.Util.EZConfig
-import XMonad.Hooks.DynamicLog
+import XMonad.Util.EZConfig                     -- ez shortcuts
+import XMonad.Hooks.DynamicLog                  -- for bar
 import XMonad.Hooks.ManageDocks
 import XMonad.Actions.CycleWS
-import XMonad.Layout.IM
-import XMonad.Layout.Grid
+import XMonad.Layout.IM                         -- layout for pidgin
+import XMonad.Layout.Grid                       -- grid layout
 import XMonad.Layout.PerWorkspace
 import XMonad.Layout.Spacing
 import XMonad.Hooks.ManageHelpers
@@ -39,11 +41,11 @@ myFocusFollowsMouse = True
 myClickJustFocuses :: Bool
 myClickJustFocuses = False
 
-myBorderWidth   = 4
+myBorderWidth   = 2
 myModMask       = mod4Mask
 
 myWorkspaces = clickable $ ["web","dev","term","4","5","6","7","media","im"]
-    where clickable l = ["<action=`xdotool key super+" ++ show (n) ++ "`>" ++ ws ++ "</action>" | (i,ws) <- zip [1..9] l, let n = i ]
+    where clickable l = ["<action=`xdotool key super+" ++ show n ++ "`>" ++ ws ++ "</action>" | (i,ws) <- zip [1..9] l, let n = i ]
 
 
 ------------------------------------------------------------------------
@@ -132,7 +134,7 @@ myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm, button2), (\w -> focus w >> windows W.shiftMaster))
     , ((modm, button3), (\w -> focus w >> Flex.mouseResizeWindow w))
     ]
-------------------------------------------------------------------------
+-----------------------------------3------------------------------------
 -- Layouts
 ------------------------------------------------------------------------
 
@@ -144,8 +146,8 @@ myLayout
       named "[M]" (Mirror tiled) |||
       named "[F]" Full
     where
-        pidginLayot = named "[I]" $ spacing 5 $ withIM (1%7) (Role "buddy_list") Grid
-        tiled   = spacing 5 $ Tall nmaster delta ratio
+        pidginLayot = named "[I]" $ spacing 4 $ withIM (1%7) (Role "buddy_list") Grid
+        tiled   = spacing 4 $ Tall nmaster delta ratio
         nmaster = 1
         ratio   = 1/2
         delta   = 3/100
@@ -220,18 +222,7 @@ myScratchPads = [ NS "terminal" "urxvtc -name 'scratchpad' -e bash -c 'tmux a -t
 ------------------------------------------------------------------------
 -- Startup hook
 ------------------------------------------------------------------------
-myStartupHook = do
-    spawn "pidgin"
-    spawn "urxvtd &"
-    spawn "compton &"
-    spawn "feh --bg-scale ~/.xmonad/wall.png --bg-scale ~/.xmonad/wall.png &"
-    spawn "xsetroot -cursor_name left_ptr &"
-    spawn "xautolock -time 10 -locker 'lock.sh' &"
-    spawn "pidgin &"
-    spawn "stalonetray &"
-    spawn "udisks-glue -f &"
-    spawn "clipit &"
-
+myStartupHook = setWMName "LG3D"
 ------------------------------------------------------------------------
 -- Now run xmonad with all the defaults we set up.
 ------------------------------------------------------------------------
@@ -255,7 +246,7 @@ defaults xmproc = defaultConfig
       ,mouseBindings      = myMouseBindings
       ,layoutHook         = mkToggle (single NBFULL) $ avoidStruts myLayout
       ,manageHook         = fullscreenManageHook <+> myManageHook
-      ,handleEventHook    = fullscreenEventHook <+> myEventHook
+      ,handleEventHook    = XMonad.Hooks.EwmhDesktops.fullscreenEventHook <+> myEventHook
       ,logHook            = myLogHook xmproc
       ,startupHook        = myStartupHook
     } `additionalKeysP` myKeys

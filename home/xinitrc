@@ -18,16 +18,17 @@ fi
 ######################################################################
 # Set keyboard layout settings
 ######################################################################
-setxkbmap -layout us,ru
-setxkbmap -option 'grp:alt_space_toggle'
-setxkbmap -option 'grp:toggle'
+setxkbmap us,ru dvp,dvp
+setxkbmap -option 'grp:rctrl_toggle'
+#setxkbmap -option 'grp:toggle'
 kbdd &
 
 pidgin &
 urxvtd &
 compton &
-feh --bg-scale ~/.xmonad/wall.png --bg-scale ~/.xmonad/wall.png &
-xsetroot -cursor_name left_ptr &
+xsetroot -cursor_name left_ptr
+hsetroot -solid '#202020'
+feh --bg-fill ~/.xmonad/wall.png --bg-fill ~/.xmonad/wall.png &
 xautolock -time 10 -locker 'lock.sh' &
 stalonetray &
 udisks-glue -f &

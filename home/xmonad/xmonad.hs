@@ -13,7 +13,6 @@ import XMonad.Layout.IM                         -- layout for pidgin
 import XMonad.Layout.Grid                       -- grid layout
 import XMonad.Layout.PerWorkspace
 import XMonad.Layout.Spacing
-import XMonad.Hooks.ManageHelpers
 import XMonad.Layout.MultiToggle
 import XMonad.Layout.MultiToggle.Instances
 import XMonad.Layout.NoBorders
@@ -21,10 +20,10 @@ import XMonad.Util.Run
 import XMonad.Util.NamedScratchpad
 import XMonad.Util.WorkspaceCompare
 import XMonad.Actions.Navigation2D
-import XMonad.Prompt
-import XMonad.Prompt.RunOrRaise
-import XMonad.Prompt.Shell
 import XMonad.Actions.GridSelect
+import XMonad.Hooks.ManageHelpers
+import XMonad.Hooks.InsertPosition
+
 
 import Data.Ratio ((%))
 import qualified XMonad.StackSet as W
@@ -43,22 +42,13 @@ myClickJustFocuses = False
 
 myBorderWidth   = 2
 myModMask       = mod4Mask
+--myBrowser       = "qutebrowser"
+myBrowser       = "firefox"
 
-myWorkspaces = clickable $ ["web","dev","term","4","5","6","7","media","im"]
-    where clickable l = ["<action=`xdotool key super+" ++ show n ++ "`>" ++ ws ++ "</action>" | (i,ws) <- zip [1..9] l, let n = i ]
+myWorkspaces = clickable ["web","dev","term","4","5","6","7","media","im"]
+    where clickable l = ["<action=`xdotool key super+" ++ i ++ "`>" ++ ws ++ "</action>" | (i,ws) <- zip keymap l ]
+          keymap = ["U26", "U5B", "U7B", "U7D", "U28", "U3D", "U2A", "U29", "U2B"]
 
-
-------------------------------------------------------------------------
--- Prompt config
-------------------------------------------------------------------------
-myXPConfig :: XPConfig
-myXPConfig = defaultXPConfig { font        = "xft:Terminus:pixelsize=13"
-                             , bgColor     = myBgColor
-                             , fgColor     = myFgColor
-                             , bgHLight    = myBgHLight
-                             , fgHLight    = myFgHLight
-                             , borderColor = myNormalBorderColor
-                             }
 
 ------------------------------------------------------------------------
 -- Key bindings. Add, modify or remove key bindings here.
@@ -68,7 +58,7 @@ myKeys = [ ("M-f",                      sendMessage $ Toggle NBFULL)
          --[ ("M-f",                      withFocused $ \f -> windows =<< appEndo `fmap` runQuery doFullFloat f)
          , ("M-m",                      sendMessage ToggleStruts)
          , ("M1-<F4>",                  kill)
-         , ("M-q",                      spawn "pkill -KILL xmobar || xmonad --recompile && xmonad --restart")
+         , ("M-r",                      spawn "pkill -KILL xmobar || xmonad --recompile && xmonad --restart")
          , ("M-<F12>",                  spawn "xautolock -locknow")
          ---------------------------------------------------------------
          -- Navigation
@@ -83,25 +73,26 @@ myKeys = [ ("M-f",                      sendMessage $ Toggle NBFULL)
 
          , ("M1-<Tab>",                 windows W.focusDown >> windows W.shiftMaster)
          , ("M1-S-<Tab>",               windows W.focusUp >> windows W.shiftMaster)
-         , ("M1-j",                     windows W.focusDown)
-         , ("M1-k",                     windows W.focusUp)
-         , ("M1-h",                     windowGo L False)
-         , ("M1-l",                     windowGo R False)
+         , ("M1-h",                     windows W.focusDown)
+         , ("M1-t",                     windows W.focusUp)
+         , ("M1-d",                     windowGo L False)
+         , ("M1-n",                     windowGo R False)
 
-         , ("M1-S-j",                   windowSwap D False)
-         , ("M1-S-k",                   windowSwap U False)
-         , ("M1-S-h",                   windowSwap L False)
-         , ("M1-S-l",                   windowSwap R False)
+         , ("M1-S-h",                   windowSwap D False)
+         , ("M1-S-t",                   windowSwap U False)
+         , ("M1-S-d",                   windowSwap L False)
+         , ("M1-S-n",                   windowSwap R False)
          ---------------------------------------------------------------
          -- Run applications
          ---------------------------------------------------------------
-         , ("M-p",                      runOrRaisePrompt myXPConfig)
-         , ("M-S-p",                    shellPrompt myXPConfig)
-         , ("M-a",                      spawn "firefox")
-         , ("M-s",                      spawn "spacefm")
-         , ("M-d",                      spawn "urxvtc -e ranger")
-         , ("M-z",                      namedScratchpadAction myScratchPads "terminal")
-         , ("M-x",                      namedScratchpadAction myScratchPads "rt")
+         , ("M-p",                      spawn "dmenu.sh")
+         , ("M-a",                      spawn myBrowser)
+         , ("M-e",                      spawn "spacefm")
+         , ("M-u",                      spawn "urxvtc -e ranger")
+         , ("M-o",                      spawn "gvim")
+         , ("M-'",                      namedScratchpadAction myScratchPads "terminal")
+         , ("M-q",                      namedScratchpadAction myScratchPads "rt")
+         , ("M-j",                      namedScratchpadAction myScratchPads "kbdhelp")
          ---------------------------------------------------------------
          -- MPD
          ---------------------------------------------------------------
@@ -117,24 +108,32 @@ myKeys = [ ("M-f",                      sendMessage $ Toggle NBFULL)
          , ("<XF86AudioRaiseVolume>",   spawn "amixer set Master 2%+")
          , ("<XF86AudioLowerVolume>",   spawn "amixer set Master 2%-")
          , ("<XF86AudioMute>",          spawn "amixer set Master toggle")
-         ] where
+         ] ++
+         [ (m ++ [k], windows $ f i)
+         | (i, k) <- zip myWorkspaces "&[{}(=*)+"
+         , (f, m) <- [(W.greedyView, "M-"), (W.shift, "M-S-")]
+         ] ++
+         [ (m ++ [key], screenWorkspace sc >>= flip whenJust (windows . f))
+         | (key, sc) <- zip ";,." [0..]
+         , (f, m) <- [(W.view, "M-"), (W.shift, "M-S-")]]
+         where
                 notSP = (return $ ("NSP" /=) . W.tag) :: X (WindowSpace -> Bool)
                 nextNonEmptyWS = findWorkspace getSortByIndexNoSP Next HiddenNonEmptyWS 1
-                    >>= \t -> (windows . W.view $ t)
+                    >>= \t -> windows . W.view $ t
                 prevNonEmptyWS = findWorkspace getSortByIndexNoSP Prev HiddenNonEmptyWS 1
-                    >>= \t -> (windows . W.view $ t)
+                    >>= \t -> windows . W.view $ t
                 getSortByIndexNoSP =
                     fmap (.namedScratchpadFilterOutWorkspace) getSortByIndex
 ------------------------------------------------------------------------
 -- Mouse bindings: default actions bound to mouse events
 ------------------------------------------------------------------------
-myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList $
-    [ ((modm, button1), (\w -> focus w >> mouseMoveWindow w
-                                       >> windows W.shiftMaster))
-    , ((modm, button2), (\w -> focus w >> windows W.shiftMaster))
-    , ((modm, button3), (\w -> focus w >> Flex.mouseResizeWindow w))
+myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList
+    [ ((modm, button1), \w -> focus w >> mouseMoveWindow w
+                                      >> windows W.shiftMaster)
+    , ((modm, button2), \w -> focus w >> windows W.shiftMaster)
+    , ((modm, button3), \w -> focus w >> Flex.mouseResizeWindow w)
     ]
------------------------------------3------------------------------------
+------------------------------------------------------------------------
 -- Layouts
 ------------------------------------------------------------------------
 
@@ -159,10 +158,12 @@ myLayout
 myManageHook = composeAll
     [ manageDocks
     , namedScratchpadManageHook myScratchPads
-    , className =? "Firefox"            --> doShift (myWorkspaces !! 0)
+    , className =? myBrowser            --> doShift (head myWorkspaces)
     , className =? "Plugin-container"   --> doFloat
+    , className =? "Octave-gui"         --> doFloat
+    , className =? "NeercGame"          --> doFloat
     , className =? "Pidgin"             --> doShift (myWorkspaces !! 8)
-    --, className =? "mpv"                --> doShift (myWorkspaces !! 7) >> doFloat
+    , className =? "mpv"                --> doFloat
     , isDialog                          --> doFloat
     , resource  =? "desktop_window"     --> doIgnore
     ]
@@ -177,15 +178,15 @@ myEventHook = mempty
 ------------------------------------------------------------------------
 -- Colors
 ------------------------------------------------------------------------
-myNormalBorderColor     = "#1a1a1a"
-myFocusedBorderColor    = "#2a2a2a"
-myFgColor               = "#c5c8c6"
-myBgColor               = "#1d1f21"
-myBgHLight              = "#373b41"
-myFgHLight              = "#c5c8c6"
+myNormalBorderColor     = "#202020"
+myFocusedBorderColor    = "#606060"
+myFgColor               = "#d2c5bc"
+myBgColor               = "#101010"
+myBgHLight              = "#202020"
+myFgHLight              = "#fff0f0"
 
-yellowColor             = "#de935f"
-blueColor               = "#5f819d"
+yellowColor             = "#fat3a0"
+blueColor               = "#356579"
 
 ------------------------------------------------------------------------
 -- Status bars and logging
@@ -199,7 +200,7 @@ myLogHook xmproc = dynamicLogWithPP $ xmobarPP
                    , ppLayout = xmobarColor "#d0d0d0" ""
                    , ppOrder = \(ws:l:t:_) -> [" " ++ l,ws,t]
                    , ppTitle = xmobarColor "#d0d0d0" "" . shorten 140
-                   , ppSort = fmap (.namedScratchpadFilterOutWorkspace) $ ppSort defaultPP
+                   , ppSort = (. namedScratchpadFilterOutWorkspace) <$> ppSort defaultPP
                    }
 
 ------------------------------------------------------------------------
@@ -207,6 +208,7 @@ myLogHook xmproc = dynamicLogWithPP $ xmobarPP
 ------------------------------------------------------------------------
 myScratchPads = [ NS "terminal" "urxvtc -name 'scratchpad' -e bash -c 'tmux a -t scratchpad || tmux new -s scratchpad'" (resource =? "scratchpad") floatingTerm
                 , NS "rt" "urxvtc -name 'rt' -e bash -c 'tmux a -t rt'" (resource =? "rt") floatingRt
+                , NS "kbdhelp" "feh --scale ~/.xmonad/dvorak.png" (stringProperty "WM_NAME" =? "feh [1 of 1] - /home/anton/.xmonad/dvorak.png") (doSideFloat SC)
                 ]
                 where
                     floatingTerm = customFloating $ W.RationalRect l t w h where
@@ -231,7 +233,7 @@ main = do
     xmproc <- spawnPipe ".cabal/bin/xmobar 2> ~/err"
     xmonad $ defaults xmproc
 
---myNavigation2DConfig = defaultNavigation2DConfig { layoutNavigation     = [("Full", centerNavigation)]
+--myNavigation2DConfig = defaultNavigation2DConfig { layoutNavigation     = [("Full", centerNavigation)`2]
 --                                                 , unmappedWindowRect   = [("Full", singleWindowRect)]
 --                                                 }
 defaults xmproc = defaultConfig
@@ -249,5 +251,5 @@ defaults xmproc = defaultConfig
       ,handleEventHook    = XMonad.Hooks.EwmhDesktops.fullscreenEventHook <+> myEventHook
       ,logHook            = myLogHook xmproc
       ,startupHook        = myStartupHook
+      --,keys               = myKeys
     } `additionalKeysP` myKeys
-

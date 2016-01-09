@@ -76,4 +76,4 @@ export EDITOR='vim'
 #    xseticon -id $WINDOWID /usr/share/icons/Faenza/apps/32/xterm.png
 #fi
 
-export PATH="/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/anton/.cabal/bin:/home/anton/Scripts:$(ruby -e 'print Gem.user_dir')/bin"
+export PATH="/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/anton/.cabal/bin:/scripts:$(ruby -e 'print Gem.user_dir')/bin"

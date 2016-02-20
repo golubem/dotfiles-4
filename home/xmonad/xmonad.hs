@@ -9,6 +9,7 @@ import XMonad.Util.EZConfig                     -- ez shortcuts
 import XMonad.Hooks.DynamicLog                  -- for bar
 import XMonad.Hooks.ManageDocks
 import XMonad.Actions.CycleWS
+
 import XMonad.Layout.IM                         -- layout for pidgin
 import XMonad.Layout.Grid                       -- grid layout
 import XMonad.Layout.PerWorkspace
@@ -16,11 +17,12 @@ import XMonad.Layout.Spacing
 import XMonad.Layout.MultiToggle
 import XMonad.Layout.MultiToggle.Instances
 import XMonad.Layout.NoBorders
+import XMonad.Layout.SimplestFloat
+
 import XMonad.Util.Run
 import XMonad.Util.NamedScratchpad
 import XMonad.Util.WorkspaceCompare
 import XMonad.Actions.Navigation2D
-import XMonad.Actions.GridSelect
 import XMonad.Hooks.ManageHelpers
 import XMonad.Hooks.InsertPosition
 
@@ -55,11 +57,10 @@ myWorkspaces = clickable ["web","dev","term","4","5","6","7","media","im"]
 ------------------------------------------------------------------------
 
 myKeys = [ ("M-f",                      sendMessage $ Toggle NBFULL)
-         --[ ("M-f",                      withFocused $ \f -> windows =<< appEndo `fmap` runQuery doFullFloat f)
          , ("M-m",                      sendMessage ToggleStruts)
          , ("M1-<F4>",                  kill)
          , ("M-r",                      spawn "pkill -KILL xmobar || xmonad --recompile && xmonad --restart")
-         , ("M-<F12>",                  spawn "xautolock -locknow")
+         , ("M-<F12>",                      spawn "xautolock -locknow")
          ---------------------------------------------------------------
          -- Navigation
          ---------------------------------------------------------------
@@ -69,19 +70,19 @@ myKeys = [ ("M-f",                      sendMessage $ Toggle NBFULL)
          , ("M1-<Right>",               nextNonEmptyWS)
          , ("M-S-<Left>",               shiftTo Prev (WSIs notSP) >> moveTo Prev (WSIs notSP))
          , ("M-S-<Right>",              shiftTo Next (WSIs notSP) >> moveTo Next (WSIs notSP))
-         , ("M-g",                      goToSelected defaultGSConfig)
 
          , ("M1-<Tab>",                 windows W.focusDown >> windows W.shiftMaster)
          , ("M1-S-<Tab>",               windows W.focusUp >> windows W.shiftMaster)
-         , ("M1-h",                     windows W.focusDown)
-         , ("M1-t",                     windows W.focusUp)
-         , ("M1-d",                     windowGo L False)
-         , ("M1-n",                     windowGo R False)
+         , ("M1-j",                     windows W.focusDown)
+         , ("M1-k",                     windows W.focusUp)
+         , ("M1-h",                     windowGo L False)
+         , ("M1-l",                     windowGo R False)
 
-         , ("M1-S-h",                   windowSwap D False)
-         , ("M1-S-t",                   windowSwap U False)
-         , ("M1-S-d",                   windowSwap L False)
-         , ("M1-S-n",                   windowSwap R False)
+         , ("M1-S-j",                   windowSwap D False)
+         , ("M1-S-k",                   windowSwap U False)
+         , ("M1-S-h",                   windowSwap L False)
+         , ("M1-S-l",                   windowSwap R False)
+
          ---------------------------------------------------------------
          -- Run applications
          ---------------------------------------------------------------
@@ -89,10 +90,11 @@ myKeys = [ ("M-f",                      sendMessage $ Toggle NBFULL)
          , ("M-a",                      spawn myBrowser)
          , ("M-e",                      spawn "spacefm")
          , ("M-u",                      spawn "urxvtc -e ranger")
-         , ("M-o",                      spawn "gvim")
+         , ("<XF86MyComputer>",         spawn "urxvtc -e ranger")
+         , ("M-o",                      spawn "urxvtc -e nvim")
          , ("M-'",                      namedScratchpadAction myScratchPads "terminal")
-         , ("M-q",                      namedScratchpadAction myScratchPads "rt")
-         , ("M-j",                      namedScratchpadAction myScratchPads "kbdhelp")
+         , ("M-q",                      namedScratchpadAction myScratchPads "torrent")
+
          ---------------------------------------------------------------
          -- MPD
          ---------------------------------------------------------------
@@ -103,8 +105,8 @@ myKeys = [ ("M-f",                      sendMessage $ Toggle NBFULL)
          ---------------------------------------------------------------
          -- Media keys
          ---------------------------------------------------------------
-         , ("<XF86MonBrightnessUp>",    spawn "xbacklight -inc 10& ")
-         , ("<XF86MonBrightnessDown>",  spawn "xbacklight -dec 10& ")
+         , ("<XF86MonBrightnessUp>",    spawn "light -A 10")
+         , ("<XF86MonBrightnessDown>",  spawn "light -U 10")
          , ("<XF86AudioRaiseVolume>",   spawn "amixer set Master 2%+")
          , ("<XF86AudioLowerVolume>",   spawn "amixer set Master 2%-")
          , ("<XF86AudioMute>",          spawn "amixer set Master toggle")
@@ -143,16 +145,19 @@ myLayout
     $ onWorkspace (myWorkspaces !! 8) pidginLayot
     $ named "[T]" tiled |||
       named "[M]" (Mirror tiled) |||
+      named "[G]" grid |||
       named "[F]" Full
     where
-        pidginLayot = named "[I]" $ spacing 4 $ withIM (1%7) (Role "buddy_list") Grid
-        tiled   = spacing 4 $ Tall nmaster delta ratio
-        nmaster = 1
-        ratio   = 1/2
-        delta   = 3/100
+        pidginLayot = named "[I]" $ spacing 4 $ withIM (1%7) (Role "buddy_list") (Mirror Grid)
+        tiled       = spaces $ Tall nmaster delta ratio
+        grid        = spaces $ Grid
+        spaces      = spacing 4
+        nmaster     = 1
+        ratio       = 1/2
+        delta       = 3/100
 
 ------------------------------------------------------------------------
--- Window rules:
+-- Window rules
 ------------------------------------------------------------------------
 
 myManageHook = composeAll
@@ -166,6 +171,7 @@ myManageHook = composeAll
     , className =? "mpv"                --> doFloat
     , isDialog                          --> doFloat
     , resource  =? "desktop_window"     --> doIgnore
+    , className =? "steam"              --> doShift (myWorkspaces !! 6)
     ]
     <+>
     composeOne [isFullscreen -?> doFullFloat]
@@ -180,13 +186,13 @@ myEventHook = mempty
 ------------------------------------------------------------------------
 myNormalBorderColor     = "#202020"
 myFocusedBorderColor    = "#606060"
-myFgColor               = "#d2c5bc"
-myBgColor               = "#101010"
+myFgColor               = "#c5c8c6"
+myBgColor               = "#1d1f21"
 myBgHLight              = "#202020"
 myFgHLight              = "#fff0f0"
 
-yellowColor             = "#fat3a0"
-blueColor               = "#356579"
+yellowColor             = "#f0c674"
+blueColor               = "#81a2be"
 
 ------------------------------------------------------------------------
 -- Status bars and logging
@@ -207,8 +213,7 @@ myLogHook xmproc = dynamicLogWithPP $ xmobarPP
 -- Scratchpads
 ------------------------------------------------------------------------
 myScratchPads = [ NS "terminal" "urxvtc -name 'scratchpad' -e bash -c 'tmux a -t scratchpad || tmux new -s scratchpad'" (resource =? "scratchpad") floatingTerm
-                , NS "rt" "urxvtc -name 'rt' -e bash -c 'tmux a -t rt'" (resource =? "rt") floatingRt
-                , NS "kbdhelp" "feh --scale ~/.xmonad/dvorak.png" (stringProperty "WM_NAME" =? "feh [1 of 1] - /home/anton/.xmonad/dvorak.png") (doSideFloat SC)
+                , NS "torrent" "transmission-gtk" (stringProperty "WM_NAME" =? "Transmission") floatingRt
                 ]
                 where
                     floatingTerm = customFloating $ W.RationalRect l t w h where
@@ -217,10 +222,10 @@ myScratchPads = [ NS "terminal" "urxvtc -name 'scratchpad' -e bash -c 'tmux a -t
                         t = 1 - h
                         l = 1 - w
                     floatingRt = customFloating $ W.RationalRect l t w h where
-                        h = 0.8
-                        w = 1
+                        h = 1
+                        w = 0.3
                         t = 1 - h
-                        l = 1 - w
+                        l = 0
 ------------------------------------------------------------------------
 -- Startup hook
 ------------------------------------------------------------------------

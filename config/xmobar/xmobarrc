@@ -1,7 +1,7 @@
 -- vim: syntax=haskell
 Config { font = "xft:Terminus:size=9,Ionicons:size=9"
-       , bgColor =      "#101010"
-       , fgColor =      "#d2c5bc"
+       , bgColor =      "#1d1f21"
+       , fgColor =      "#c5c8c6"
        , position =     TopP 4 4
        --, position =     TopSize C 100 25
        , iconRoot =     "."
@@ -13,34 +13,25 @@ Config { font = "xft:Terminus:size=9,Ionicons:size=9"
 
        , template = "%UnsafeStdinReader% }{ %default:Master%  %wlp3s0wi%  %cpu%  %battery%  %date% <action=`xkb-switch -n`>%kbd%</action> "
 
-       , commands = [ Run BatteryP ["BAT1"] [ "--template" , "<acstatus>"
-                                , "--Low"       , "20"        -- units: %
+       , commands = [ Run BatteryP ["BAT0"] [ "--template" , "<acstatus>"
+                                , "--Low"       , "13"        -- units: %
                                 , "--High"      , "70"        -- units: %
-                                --, "--low"       , "#d28445"
-                                --, "--high"      , "#8c9440"
                                 , "-w"          , "3"
                                 , "--"
-                                , "-f"          , "/sys/class/power_supply/ACAD/online"
-                                --, "-o"          , "<fc=#81957c> <left>%</fc>"
-                                --, "-O"          , "<fc=#81957c> <left>%</fc>"
-                                --, "-i"          , "<fc=#81957c> <left>%</fc>"
                                 , "-o"          , " <left>%"
                                 , "-O"          , " <left>%"
                                 , "-i"          , " <left>%"
                                 ] 15
                     , Run Wireless "wlp3s0" [ "--template"
-                                            --, "<action=`urxvtc -e sudo wifi-menu`><fc=#5f819d> <quality>%</fc></action>"
-                                            --, "<action=`wifi-notify.py wlp3s0`><fc=#7491a1> <quality>%</fc></action>"
                                             , "<action=`wifi-notify.py wlp3s0`> <quality>%</action>"
                                             , "-w"
                                             , "3"
                                             ] 5
                     , Run Cpu [ "--template"
-                              --, "<action=`urxvtc -e htop`><fc=#87314e> <total>%</fc></action>"
                               , "<action=`urxvtc -e htop`> <total>%</action>"
                               , "-w", "3"] 15
     		        , Run Date "<fc=#c5c8c6>%b %_d %H:%M:%S</fc>" "date" 10
-                    , Run Kbd [("us(dvp)", "en"), ("ru(dvp)", "ru")]
+                    , Run Kbd [("us(dvp)", "en"), ("ru(diktor)", "ru")]
                     , Run Volume "default" "Master" [ "--template" , "<action=`amixer -q set Master toggle`><status></action>"
                                         , "-w"          , "3"
                                         , "--"

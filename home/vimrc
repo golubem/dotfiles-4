@@ -2,30 +2,31 @@
 " Base settings
 "======================================================================
 
-colorscheme  jellybeans
-syntax               on
-set          background = dark
-set               shell = /bin/sh
-set            encoding = utf-8
-set               mouse = a
-set              number
-set           incsearch
-set                wrap
-set            autoread
-set           linebreak
-set          scrolljump = 4
-set           scrolloff = 4
-set               ruler
-set          ignorecase
-set           smartcase
-set           clipboard = unnamedplus
-set              hidden
-set            modeline
-set           modelines = 5
-set         colorcolumn = 80
-set           incsearch
-set            omnifunc = syntaxcomplete#Complete
-let           mapleader = ","
+colorscheme jellybeans
+syntax      on
+set         background=dark
+set         shell=/bin/sh
+set         encoding=utf-8
+set         mouse=a
+set         number
+set         incsearch
+set         wrap
+set         autoread
+set         linebreak
+set         scrolljump=4
+set         scrolloff=4
+set         ruler
+set         ignorecase
+set         smartcase
+set         clipboard=unnamedplus
+set         hidden
+set         modeline
+set         modelines=5
+set         tw=79
+set         colorcolumn=80
+set         incsearch
+set         omnifunc=syntaxcomplete#Complete
+let         mapleader=","
 
 if has("gui_running")
     set guifont=Hack\ Regular\ 9
@@ -85,27 +86,27 @@ call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 
 " My Plugins
-Plugin           'vim-scripts/dbext.vim' " Databases support
-Plugin         'junegunn/vim-easy-align' " Aligning some equalities
-Plugin          'airblade/vim-gitgutter' " Git command supports
+Plugin 'vim-scripts/dbext.vim'           " Databases support
+Plugin 'junegunn/vim-easy-align'         " Aligning some equalities
+Plugin 'airblade/vim-gitgutter'          " Git command supports
 Plugin 'bronson/vim-trailing-whitespace' " Removes useless whitespaces
-Plugin                'SirVer/ultisnips' " Snippets
-Plugin              'honza/vim-snippets' " Snippets
-Plugin              'tpope/vim-sensible' " Some features for noobs
-Plugin              'tpope/vim-fugitive' " Git wrapper for vim
-Plugin            'scrooloose/syntastic' " Multi syntax
-Plugin             'scrooloose/nerdtree' " File explorer
-Plugin         'jistr/vim-nerdtree-tabs' " Tabs support for NEERDTree
-Plugin                  'xolox/vim-misc' " Tags
-Plugin          'Valloric/YouCompleteMe' " Autocompleter
-Plugin                  'kien/ctrlp.vim' " Fuzzy search for everything
-Plugin       'suan/vim-instant-markdown' " Markdown with prewiew
-Plugin              'tpope/vim-surround' " Surround quotes, tags and other
-Plugin        'scrooloose/nerdcommenter' " Comment tool
-Plugin               'bling/vim-airline' " Powerline
-Plugin               'eagletmt/neco-ghc' " Haskell completion
-Plugin            'jvirtanen/vim-octave' " Octave completion support
-Plugin                   'lervag/vimtex' " LaTeX
+Plugin 'SirVer/ultisnips'                " Snippets
+Plugin 'tpope/vim-sensible'              " Some features for noobs
+Plugin 'tpope/vim-fugitive'              " Git wrapper for vim
+Plugin 'scrooloose/syntastic'            " Multi syntax
+Plugin 'scrooloose/nerdtree'             " File explorer
+Plugin 'jistr/vim-nerdtree-tabs'         " Tabs support for NEERDTree
+Plugin 'xolox/vim-misc'                  " Tags
+Plugin 'Valloric/YouCompleteMe'          " Autocompleter
+Plugin 'kien/ctrlp.vim'                  " Fuzzy search for everything
+Plugin 'suan/vim-instant-markdown'       " Markdown with prewiew
+Plugin 'tpope/vim-surround'              " Surround quotes, tags and other
+Plugin 'scrooloose/nerdcommenter'        " Comment tool
+Plugin 'bling/vim-airline'               " Powerline
+Plugin 'eagletmt/neco-ghc'               " Haskell completion
+Plugin 'jvirtanen/vim-octave'            " Octave completion support
+Plugin 'lervag/vimtex'                   " LaTeX
+Plugin 'tpope/vim-rails'                 " Ruby on Rails support
 
 call vundle#end()
 filetype plugin indent on
@@ -125,23 +126,22 @@ vnoremap <silent> <Enter> :EasyAlign<cr>
 " CtrlP
 "======================================================================
 
-let g:ctrlp_show_hidden = 1
+let g:ctrlp_show_hidden=1
 nmap <leader>b :CtrlPBuffer<cr>
 
 "=====================================================================
 " Vimtex
 "=====================================================================
 
-let g:vimtex_view_method         = 'zathura'
-let g:vimtex_fold_enabled        = 0
-
-let g:vimtex_latexmk_options     = '-pdf -shell-escape'
-let g:vimtex_view_general_viewer = 'zathura'
+let g:vimtex_view_method='zathura'
+let g:vimtex_fold_enabled=0
+let g:vimtex_latexmk_options='-pdf -shell-escape'
+let g:vimtex_view_general_viewer='zathura'
 
 if !exists('g:ycm_semantic_triggers')
-    let g:ycm_semantic_triggers  = {}
+    let g:ycm_semantic_triggers={}
 endif
-let g:ycm_semantic_triggers.tex  = [
+let g:ycm_semantic_triggers.tex=[
      \ 're!\\[A-Za-z]*(ref|cite)[A-Za-z]*([^]]*])?{([^}]*, ?)*'
      \ ]
 
@@ -149,49 +149,49 @@ let g:ycm_semantic_triggers.tex  = [
 " Airline
 "======================================================================
 
-let g:airline#extensions#tabline#enabled = 1
-let g:airline_powerline_fonts            = 1
-let g:airline_symbols                    = {}
-let g:airline_left_sep                   = ''
-let g:airline_left_alt_sep               = ''
-let g:airline_right_sep                  = ''
-let g:airline_right_alt_sep              = ''
-let g:airline_symbols.branch             = ''
-let g:airline_symbols.readonly           = ''
-let g:airline_symbols.linenr             = ''
+let g:airline#extensions#tabline#enabled=1
+let g:airline_powerline_fonts=1
+let g:airline_symbols={}
+let g:airline_left_sep=''
+let g:airline_left_alt_sep=''
+let g:airline_right_sep=''
+let g:airline_right_alt_=''
+let g:airline_symbols.br=''
+let g:airline_symbols.re=''
+let g:airline_symbols.li=''
 
 "======================================================================
 " Autocompletion
 "======================================================================
 
-let g:EclimCompletionMethod = 'omnifunc'
-
+let g:ycm_autoclose_preview_window_after_completion=1
+nnoremap <leader>g :YcmCompleter GoToDefinitionElseDeclaration<CR>
 
 "======================================================================
 " Syntastic
 "======================================================================
 
-let g:syntastic_check_on_open              = 1
-let g:syntastic_enable_signs               = 1
-let g:syntastic_cpp_include_dirs           = ['/usr/include/' ]
-let g:syntastic_cpp_check_header           = 1
-let g:syntastic_cpp_remove_include_errors  = 1
-let g:syntastic_c_checkers                 = ['make']
-let g:syntastic_always_populate_loc_list   = 1
-let g:syntastic_check_on_open              = 1
-let g:syntastic_enable_signs               = 1
-let g:syntastic_error_symbol               = '✗'
-let g:syntastic_warning_symbol             = '⚠'
-set statusline                            += %#warningmsg#
-set statusline                            += %{SyntasticStatuslineFlag()}
-set statusline                            += %*gbar
-let g:syntastic_cpp_compiler               = 'clang++'
-let g:syntastic_cpp_compiler_options       = ' -std=c++11 -stdlib=libc++'
+let g:syntastic_check_on_open=1
+let g:syntastic_enable_signs=1
+let g:syntastic_cpp_include_dirs=['/usr/include/' ]
+let g:syntastic_cpp_check_header=1
+let g:syntastic_cpp_remove_include_errors=1
+let g:syntastic_c_checkers=['make']
+let g:syntastic_always_populate_loc_list=1
+let g:syntastic_check_on_open=1
+let g:syntastic_enable_signs=1
+let g:syntastic_error_symbol='✗'
+let g:syntastic_warning_symbol='⚠'
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*gbar
+let g:syntastic_cpp_compiler='clang++'
+let g:syntastic_cpp_compiler_options=' -std=c++11 -stdlib=libc++'
 
 "======================================================================
 " NERDTree
 "======================================================================
 
 nmap <leader>m :NERDTreeTabsToggle<CR>
-let  NERDTreeHighlightCursorline = 1
-let  NERDTreeIgnore              = ['.yardoc', 'pkg']
+let  NERDTreeHighlightCursorline=1
+let  NERDTreeIgnore=['.yardoc', 'pkg']

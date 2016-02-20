@@ -1,0 +1,220 @@
+sw_volume: 98
+audio_device_state:1:pulse audio
+audio_device_state:1:my_fifo
+state: pause
+current: 7
+time: 98.453000
+random: 1
+repeat: 0
+single: 0
+consume: 1
+crossfade: 0
+mixrampdb: 0.000000
+mixrampdelay: -1.000000
+playlist_begin
+0:1969 - Space Oddity [vinyl]/01 - Space Oddity.flac
+1:1969 - Space Oddity [vinyl]/02 - Unwashed and Somewhat Slightly Dazed.flac
+2:1969 - Space Oddity [vinyl]/03 - (Don't Sit Down).flac
+3:1969 - Space Oddity [vinyl]/04 - Letter to Hermione.flac
+4:1969 - Space Oddity [vinyl]/05 - Cygnet Committee.flac
+5:1969 - Space Oddity [vinyl]/06 - Janine.flac
+6:1969 - Space Oddity [vinyl]/07 - An Occasional Dream.flac
+7:1969 - Space Oddity [vinyl]/08 - Wild Eyed Boy From Freecloud.flac
+8:1969 - Space Oddity [vinyl]/09 - God Knows I'm Good.flac
+9:1969 - Space Oddity [vinyl]/10 - Memory of a Free Festival.flac
+10:1969 - Space Oddity [vinyl]/11 - Conversation Piece.flac
+11:1969 - Space Oddity [vinyl]/12 - Memory of a Free Festival Part 1.flac
+12:1969 - Space Oddity [vinyl]/13 - Memory of a Free Festival Part 2.flac
+song_begin: David Bowie - The Rise And Fall Of Ziggy Stardust And The Spiders From Mars/David Bowie - The Rise And Fall Of Ziggy Stardust And The Spiders From Mars.flac
+Range: 440-283600
+Time: 3367.440000
+Genre: Rock
+Date: 1972
+AlbumArtist: David Bowie
+Album: The Rise And Fall Of Ziggy Stardust And The Spiders From Mars
+Track: 01
+Title: Five Years
+Artist: David Bowie
+mtime: 1455881844
+song_end
+song_begin: David Bowie - The Rise And Fall Of Ziggy Stardust And The Spiders From Mars/David Bowie - The Rise And Fall Of Ziggy Stardust And The Spiders From Mars.flac
+Range: 283640-497466
+Time: 3367.440000
+Genre: Rock
+Date: 1972
+AlbumArtist: David Bowie
+Album: The Rise And Fall Of Ziggy Stardust And The Spiders From Mars
+Track: 02
+Title: Soul Love
+Artist: David Bowie
+mtime: 1455881844
+song_end
+song_begin: David Bowie - The Rise And Fall Of Ziggy Stardust And The Spiders From Mars/David Bowie - The Rise And Fall Of Ziggy Stardust And The Spiders From Mars.flac
+Range: 497506-774840
+Time: 3367.440000
+Genre: Rock
+Date: 1972
+AlbumArtist: David Bowie
+Album: The Rise And Fall Of Ziggy Stardust And The Spiders From Mars
+Track: 03
+Title: Moonage Daydream
+Artist: David Bowie
+mtime: 1455881844
+song_end
+song_begin: David Bowie - The Rise And Fall Of Ziggy Stardust And The Spiders From Mars/David Bowie - The Rise And Fall Of Ziggy Stardust And The Spiders From Mars.flac
+Range: 774866-1031266
+Time: 3367.440000
+Genre: Rock
+Date: 1972
+AlbumArtist: David Bowie
+Album: The Rise And Fall Of Ziggy Stardust And The Spiders From Mars
+Track: 04
+Title: Starman
+Artist: David Bowie
+mtime: 1455881844
+song_end
+song_begin: David Bowie - The Rise And Fall Of Ziggy Stardust And The Spiders From Mars/David Bowie - The Rise And Fall Of Ziggy Stardust And The Spiders From Mars.flac
+Range: 1031306-1208733
+Time: 3367.440000
+Genre: Rock
+Date: 1972
+AlbumArtist: David Bowie
+Album: The Rise And Fall Of Ziggy Stardust And The Spiders From Mars
+Track: 05
+Title: It Ain't Easy
+Artist: David Bowie
+mtime: 1455881844
+song_end
+song_begin: David Bowie - The Rise And Fall Of Ziggy Stardust And The Spiders From Mars/David Bowie - The Rise And Fall Of Ziggy Stardust And The Spiders From Mars.flac
+Range: 1211040-1412306
+Time: 3367.440000
+Genre: Rock
+Date: 1972
+AlbumArtist: David Bowie
+Album: The Rise And Fall Of Ziggy Stardust And The Spiders From Mars
+Track: 06
+Title: Lady Stardust
+Artist: David Bowie
+mtime: 1455881844
+song_end
+song_begin: David Bowie - The Rise And Fall Of Ziggy Stardust And The Spiders From Mars/David Bowie - The Rise And Fall Of Ziggy Stardust And The Spiders From Mars.flac
+Range: 1412333-1579440
+Time: 3367.440000
+Genre: Rock
+Date: 1972
+AlbumArtist: David Bowie
+Album: The Rise And Fall Of Ziggy Stardust And The Spiders From Mars
+Track: 07
+Title: Star
+Artist: David Bowie
+mtime: 1455881844
+song_end
+song_begin: David Bowie - The Rise And Fall Of Ziggy Stardust And The Spiders From Mars/David Bowie - The Rise And Fall Of Ziggy Stardust And The Spiders From Mars.flac
+Range: 1579466-1738306
+Time: 3367.440000
+Genre: Rock
+Date: 1972
+AlbumArtist: David Bowie
+Album: The Rise And Fall Of Ziggy Stardust And The Spiders From Mars
+Track: 08
+Title: Hang Onto Yourself
+Artist: David Bowie
+mtime: 1455881844
+song_end
+song_begin: David Bowie - The Rise And Fall Of Ziggy Stardust And The Spiders From Mars/David Bowie - The Rise And Fall Of Ziggy Stardust And The Spiders From Mars.flac
+Range: 1738333-1931506
+Time: 3367.440000
+Genre: Rock
+Date: 1972
+AlbumArtist: David Bowie
+Album: The Rise And Fall Of Ziggy Stardust And The Spiders From Mars
+Track: 09
+Title: Ziggy Stardust
+Artist: David Bowie
+mtime: 1455881844
+song_end
+song_begin: David Bowie - The Rise And Fall Of Ziggy Stardust And The Spiders From Mars/David Bowie - The Rise And Fall Of Ziggy Stardust And The Spiders From Mars.flac
+Range: 1931533-2137000
+Time: 3367.440000
+Genre: Rock
+Date: 1972
+AlbumArtist: David Bowie
+Album: The Rise And Fall Of Ziggy Stardust And The Spiders From Mars
+Track: 10
+Title: Suffragette City
+Artist: David Bowie
+mtime: 1455881844
+song_end
+song_begin: David Bowie - The Rise And Fall Of Ziggy Stardust And The Spiders From Mars/David Bowie - The Rise And Fall Of Ziggy Stardust And The Spiders From Mars.flac
+Range: 2137040-2315173
+Time: 3367.440000
+Genre: Rock
+Date: 1972
+AlbumArtist: David Bowie
+Album: The Rise And Fall Of Ziggy Stardust And The Spiders From Mars
+Track: 11
+Title: Rock 'N' Roll Suicide
+Artist: David Bowie
+mtime: 1455881844
+song_end
+song_begin: David Bowie - The Rise And Fall Of Ziggy Stardust And The Spiders From Mars/David Bowie - The Rise And Fall Of Ziggy Stardust And The Spiders From Mars.flac
+Range: 2319040-2482866
+Time: 3367.440000
+Genre: Rock
+Date: 1972
+AlbumArtist: David Bowie
+Album: The Rise And Fall Of Ziggy Stardust And The Spiders From Mars
+Track: 12
+Title: John, I'm Only Dancing (single B-side)
+Artist: David Bowie
+mtime: 1455881844
+song_end
+song_begin: David Bowie - The Rise And Fall Of Ziggy Stardust And The Spiders From Mars/David Bowie - The Rise And Fall Of Ziggy Stardust And The Spiders From Mars.flac
+Range: 2485066-2675506
+Time: 3367.440000
+Genre: Rock
+Date: 1972
+AlbumArtist: David Bowie
+Album: The Rise And Fall Of Ziggy Stardust And The Spiders From Mars
+Track: 13
+Title: Velvet Goldmine (single B-side)
+Artist: David Bowie
+mtime: 1455881844
+song_end
+song_begin: David Bowie - The Rise And Fall Of Ziggy Stardust And The Spiders From Mars/David Bowie - The Rise And Fall Of Ziggy Stardust And The Spiders From Mars.flac
+Range: 2677533-2932533
+Time: 3367.440000
+Genre: Rock
+Date: 1972
+AlbumArtist: David Bowie
+Album: The Rise And Fall Of Ziggy Stardust And The Spiders From Mars
+Track: 14
+Title: Sweet Head (previously unreleased track)
+Artist: David Bowie
+mtime: 1455881844
+song_end
+song_begin: David Bowie - The Rise And Fall Of Ziggy Stardust And The Spiders From Mars/David Bowie - The Rise And Fall Of Ziggy Stardust And The Spiders From Mars.flac
+Range: 2934573-3151066
+Time: 3367.440000
+Genre: Rock
+Date: 1972
+AlbumArtist: David Bowie
+Album: The Rise And Fall Of Ziggy Stardust And The Spiders From Mars
+Track: 15
+Title: Ziggy Stardust (previously unreleased original demo)
+Artist: David Bowie
+mtime: 1455881844
+song_end
+song_begin: David Bowie - The Rise And Fall Of Ziggy Stardust And The Spiders From Mars/David Bowie - The Rise And Fall Of Ziggy Stardust And The Spiders From Mars.flac
+Range: 3154133-
+Time: 3367.440000
+Genre: Rock
+Date: 1972
+AlbumArtist: David Bowie
+Album: The Rise And Fall Of Ziggy Stardust And The Spiders From Mars
+Track: 16
+Title: Lady Stardust (previously unreleased original demo)
+Artist: David Bowie
+mtime: 1455881844
+song_end
+playlist_end

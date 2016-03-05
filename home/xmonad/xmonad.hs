@@ -22,10 +22,11 @@ import XMonad.Layout.SimplestFloat
 import XMonad.Util.Run
 import XMonad.Util.NamedScratchpad
 import XMonad.Util.WorkspaceCompare
-import XMonad.Actions.Navigation2D
 import XMonad.Hooks.ManageHelpers
 import XMonad.Hooks.InsertPosition
 
+import XMonad.Actions.WindowGo
+import XMonad.Actions.Navigation2D
 
 import Data.Ratio ((%))
 import qualified XMonad.StackSet as W
@@ -60,7 +61,7 @@ myKeys = [ ("M-f",                      sendMessage $ Toggle NBFULL)
          , ("M-m",                      sendMessage ToggleStruts)
          , ("M1-<F4>",                  kill)
          , ("M-r",                      spawn "pkill -KILL xmobar || xmonad --recompile && xmonad --restart")
-         , ("M-<F12>",                      spawn "xautolock -locknow")
+         , ("M-<F12>",                  spawn "xautolock -locknow")
          ---------------------------------------------------------------
          -- Navigation
          ---------------------------------------------------------------
@@ -87,7 +88,8 @@ myKeys = [ ("M-f",                      sendMessage $ Toggle NBFULL)
          -- Run applications
          ---------------------------------------------------------------
          , ("M-p",                      spawn "dmenu.sh")
-         , ("M-a",                      spawn myBrowser)
+         , ("M-a",                      runOrRaise "firefox" (className =? "Firefox"))
+         , ("<XF86HomePage>",           runOrRaise "firefox" (className =? "Firefox"))
          , ("M-e",                      spawn "spacefm")
          , ("M-u",                      spawn "urxvtc -e ranger")
          , ("<XF86MyComputer>",         spawn "urxvtc -e ranger")
@@ -102,6 +104,7 @@ myKeys = [ ("M-f",                      sendMessage $ Toggle NBFULL)
          , ("C-M1-<Down>",              spawn "mpc stop")
          , ("C-M1-<Left>",              spawn "mpc prev")
          , ("C-M1-<Right>",             spawn "mpc next")
+
          ---------------------------------------------------------------
          -- Media keys
          ---------------------------------------------------------------
@@ -110,6 +113,10 @@ myKeys = [ ("M-f",                      sendMessage $ Toggle NBFULL)
          , ("<XF86AudioRaiseVolume>",   spawn "amixer set Master 2%+")
          , ("<XF86AudioLowerVolume>",   spawn "amixer set Master 2%-")
          , ("<XF86AudioMute>",          spawn "amixer set Master toggle")
+         , ("<XF86Explorer>",           spawn "touchpad.sh -t")
+         , ("<XF86LaunchA>",            spawn "kbd.sh -t")
+
+
          ] ++
          [ (m ++ [k], windows $ f i)
          | (i, k) <- zip myWorkspaces "&[{}(=*)+"
@@ -148,7 +155,7 @@ myLayout
       named "[G]" grid |||
       named "[F]" Full
     where
-        pidginLayot = named "[I]" $ spacing 4 $ withIM (1%7) (Role "buddy_list") (Mirror Grid)
+        pidginLayot = named "[I]" $ spacing 4 $ withIM (1%7) (Role "buddy_list") Grid
         tiled       = spaces $ Tall nmaster delta ratio
         grid        = spaces $ Grid
         spaces      = spacing 4

@@ -5,7 +5,7 @@
 colorscheme Tomorrow-Night
 syntax      on
 set         background=dark
-set         shell=/bin/sh
+set         shell=/bin/zsh
 set         encoding=utf-8
 set         mouse=a
 set         number
@@ -70,8 +70,8 @@ noremap <tab> <c-w><c-w>
 
 " Tabs navigation
 nnoremap X              :bp <bar> bd #<cr>
-nnoremap T              :bn<cr>
-nnoremap H              :bp<cr>
+nnoremap K              :bn<cr>
+nnoremap J              :bp<cr>
 
 "======================================================================
 " Plugins
@@ -104,6 +104,9 @@ Plug 'eagletmt/neco-ghc'               " Haskell completion
 Plug 'jvirtanen/vim-octave'            " Octave completion support
 Plug 'lervag/vimtex'                   " LaTeX
 Plug 'tpope/vim-rails'                 " Ruby on Rails support
+Plug 'fatih/vim-go'
+Plug 'zchee/deoplete-go', { 'do': 'make'}
+Plug 'SirVer/ultisnips'
 
 call plug#end()
 
@@ -131,8 +134,8 @@ nmap <leader>b :CtrlPBuffer<cr>
 
 let g:vimtex_latexmk_progname = 'nvr'
 let g:vimtex_view_method='zathura'
-let g:vimtex_fold_enabled=0
-let g:vimtex_latexmk_options='-pdf -shell-escape'
+"let g:vimtex_fold_enabled=0
+"let g:vimtex_latexmk_options='-pdf -shell-escape'
 let g:vimtex_view_general_viewer='zathura'
 
 "======================================================================
@@ -155,9 +158,18 @@ let g:airline_symbols.li=''
 "======================================================================
 
 " Deoplete
-set completeopt+=noinsert
+"set completeopt+=noinsert
+set completeopt-=preview
 
 let g:deoplete#enable_at_startup = 1
+
+" Go
+let g:deoplete#sources#go#align_class = 1
+
+let g:deoplete#omni#input_patterns = {}
+let g:deoplete#omni#input_patterns.ruby =
+        \ ['[^. *\t]\.\w*', '[a-zA-Z_]\w*::']
+let g:deoplete#omni#input_patterns.java = '[^. *\t]\.\w*'
 
 " Jedi(Python)
 autocmd FileType python setlocal completeopt-=preview
@@ -166,6 +178,24 @@ let g:jedi#completions_enabled = 0
 let g:jedi#auto_vim_configuration = 0
 let g:jedi#smart_auto_mappings = 0
 let g:jedi#show_call_signatures = 0
+
+"======================================================================
+" Golang
+"======================================================================
+let g:go_term_height = 30
+let g:go_term_width = 30
+
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_structs = 1
+let g:go_highlight_interfaces = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_build_constraints = 1
+
+let g:go_fmt_command = "goimports"
+
+let g:go_term_mode = "split"
+let g:go_term_enabled = 1
 
 "======================================================================
 " Syntastic

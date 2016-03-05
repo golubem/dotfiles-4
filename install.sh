@@ -1,7 +1,7 @@
 #!/bin/bash
 
 dir=$(readlink -f $(dirname $0))
-olddir=~/dotfiles_old
+olddir=~/.dotfiles_old
 scripts=/scripts
 workdirs="home config"
 

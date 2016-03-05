@@ -7,7 +7,7 @@
 ######################################################################
 # Keyboard settings
 ######################################################################
-setxkbmap us,ru dvp,diktor
+kbd.sh -d
 setxkbmap -option 'grp:rctrl_toggle'
 kbdd &
 
@@ -19,14 +19,13 @@ xmodmap -e "keycode 66 = ISO_Level3_Shift"
 
 pidgin &
 urxvtd &
-compton &
+compton -b &
 xsetroot -cursor_name left_ptr
 hsetroot -solid '#202020'
 feh --bg-fill ~/.xmonad/wall.png --bg-fill ~/.xmonad/wall.png &
 xautolock -time 10 -locker 'lock.sh' &
 stalonetray &
 udisks-glue -f &
-clipit &
 twmnd &
 
 touchpad.sh -d # Disable touchpad

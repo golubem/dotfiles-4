@@ -15,7 +15,9 @@ export LESSOPEN="| /usr/share/source-highlight/src-hilite-lesspipe.sh %s"
 export LESS=' -R '
 export EDITOR='nvim'
 
-export PATH="/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/anton/.cabal/bin:/scripts"
+export GOPATH=$HOME/gocode
+
+export PATH="$GOPATH/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/anton/.cabal/bin:/scripts"
 
 # Aliaces
 alias winmv='convmv -f cp1252 -t cp850 * --notest  && convmv -f cp866 -t utf-8 * --notest'

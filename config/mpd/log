@@ -164,3 +164,224 @@ Feb 20 11:56 : player: played "1969 - Space Oddity [vinyl]/08 - Wild Eyed Boy Fr
 Feb 20 12:20 : player: played "1969 - Space Oddity [vinyl]/08 - Wild Eyed Boy From Freecloud.flac"
 Feb 20 12:20 : player: played "1969 - Space Oddity [vinyl]/08 - Wild Eyed Boy From Freecloud.flac"
 Feb 20 13:25 : player: played "1969 - Space Oddity [vinyl]/08 - Wild Eyed Boy From Freecloud.flac"
+Feb 20 17:07 : client: [0] opened from [::1]:34864
+Feb 20 17:07 : client: [1] opened from [::1]:34866
+Feb 20 17:07 : client: [0] closed
+Feb 20 17:07 : client: [1] closed
+Feb 20 17:07 : client: [2] opened from [::1]:34868
+Feb 20 17:07 : player: played "1969 - Space Oddity [vinyl]/08 - Wild Eyed Boy From Freecloud.flac"
+Feb 20 17:07 : client: [2] closed
+Feb 20 17:07 : client: [3] opened from [::1]:34870
+Feb 20 17:07 : client: [3] closed
+Feb 20 17:07 : client: [4] opened from [::1]:34872
+Feb 20 17:07 : player: played "1969 - Space Oddity [vinyl]/08 - Wild Eyed Boy From Freecloud.flac"
+Feb 20 17:07 : client: [4] closed
+Feb 20 17:07 : client: [5] opened from [::1]:34874
+Feb 20 17:07 : player: played "David Bowie - The Rise And Fall Of Ziggy Stardust And The Spiders From Mars/David Bowie - The Rise And Fall Of Ziggy Stardust And The Spiders From Mars.flac"
+Feb 20 17:07 : client: [5] closed
+Feb 20 17:07 : client: [6] opened from [::1]:34876
+Feb 20 17:07 : player: played "1969 - Space Oddity [vinyl]/06 - Janine.flac"
+Feb 20 17:07 : client: [6] closed
+Feb 20 17:07 : client: [7] opened from [::1]:34878
+Feb 20 17:07 : player: played "1969 - Space Oddity [vinyl]/06 - Janine.flac"
+Feb 20 17:07 : client: [7] closed
+Feb 20 17:07 : client: [8] opened from [::1]:34880
+Feb 20 17:07 : player: played "1969 - Space Oddity [vinyl]/06 - Janine.flac"
+Feb 20 17:07 : client: [8] closed
+Feb 20 17:07 : client: [9] opened from [::1]:34882
+Feb 20 17:07 : player: played "1969 - Space Oddity [vinyl]/06 - Janine.flac"
+Feb 20 17:07 : client: [9] closed
+Feb 20 17:07 : client: [10] opened from [::1]:34884
+Feb 20 17:07 : player: played "David Bowie - The Rise And Fall Of Ziggy Stardust And The Spiders From Mars/David Bowie - The Rise And Fall Of Ziggy Stardust And The Spiders From Mars.flac"
+Feb 20 17:07 : client: [10] closed
+Feb 20 17:07 : client: [11] opened from [::1]:35264
+Feb 20 17:07 : client: [11] closed
+Feb 20 18:03 : client: [12] opened from [::1]:36776
+Feb 20 18:03 : client: [13] opened from [::1]:36778
+Feb 20 18:03 : client: [13] closed
+Feb 20 18:04 : player: played "1969 - Space Oddity [vinyl]/03 - (Don't Sit Down).flac"
+Feb 20 18:09 : client: [14] opened from [::1]:36780
+Feb 20 18:09 : player: played "1969 - Space Oddity [vinyl]/02 - Unwashed and Somewhat Slightly Dazed.flac"
+Feb 20 18:09 : client: [14] closed
+Feb 20 18:13 : player: played "David Bowie - The Rise And Fall Of Ziggy Stardust And The Spiders From Mars/David Bowie - The Rise And Fall Of Ziggy Stardust And The Spiders From Mars.flac"
+Feb 20 18:16 : player: played "David Bowie - The Rise And Fall Of Ziggy Stardust And The Spiders From Mars/David Bowie - The Rise And Fall Of Ziggy Stardust And The Spiders From Mars.flac"
+Feb 20 18:16 : client: [15] opened from [::1]:36820
+Feb 20 18:16 : player: played "David Bowie - The Rise And Fall Of Ziggy Stardust And The Spiders From Mars/David Bowie - The Rise And Fall Of Ziggy Stardust And The Spiders From Mars.flac"
+Feb 20 18:16 : client: [15] closed
+Feb 20 18:17 : client: [12] closed
+Feb 20 18:17 : pulse_output: "pulse audio" [pulse] failed to play: suspended
+Feb 20 18:17 : client: [16] opened from [::1]:36826
+Feb 20 18:17 : client: [16] closed
+Feb 20 18:17 : client: [17] opened from [::1]:36828
+Feb 20 18:17 : client: [17] closed
+Feb 20 18:18 : client: [18] opened from [::1]:36830
+Feb 20 18:19 : player: played "1969 - Space Oddity [vinyl]/07 - An Occasional Dream.flac"
+Feb 20 18:23 : player: played "David Bowie - The Rise And Fall Of Ziggy Stardust And The Spiders From Mars/David Bowie - The Rise And Fall Of Ziggy Stardust And The Spiders From Mars.flac"
+Feb 20 18:26 : player: played "1969 - Space Oddity [vinyl]/04 - Letter to Hermione.flac"
+Feb 20 18:29 : player: played "David Bowie - The Rise And Fall Of Ziggy Stardust And The Spiders From Mars/David Bowie - The Rise And Fall Of Ziggy Stardust And The Spiders From Mars.flac"
+Feb 20 18:33 : player: played "David Bowie - The Rise And Fall Of Ziggy Stardust And The Spiders From Mars/David Bowie - The Rise And Fall Of Ziggy Stardust And The Spiders From Mars.flac"
+Feb 20 18:36 : player: played "David Bowie - The Rise And Fall Of Ziggy Stardust And The Spiders From Mars/David Bowie - The Rise And Fall Of Ziggy Stardust And The Spiders From Mars.flac"
+Feb 20 18:37 : client: [19] opened from [::1]:36876
+Feb 20 18:37 : player: played "1969 - Space Oddity [vinyl]/11 - Conversation Piece.flac"
+Feb 20 18:37 : client: [19] closed
+Feb 20 18:37 : client: [20] opened from [::1]:36878
+Feb 20 18:37 : client: [20] closed
+Feb 20 18:55 : client: [18] closed
+Feb 20 19:41 : client: [21] opened from [::1]:38260
+Feb 20 19:41 : client: [21] closed
+Feb 20 19:42 : client: [22] opened from [::1]:38272
+Feb 20 19:42 : client: [22] closed
+Feb 20 20:49 : client: [23] opened from [::1]:40080
+Feb 20 20:50 : client: [23] closed
+Feb 20 20:50 : client: [24] opened from [::1]:40082
+Feb 20 20:50 : client: [24] closed
+Feb 20 21:01 : player: played "David Bowie - The Rise And Fall Of Ziggy Stardust And The Spiders From Mars/David Bowie - The Rise And Fall Of Ziggy Stardust And The Spiders From Mars.flac"
+Feb 20 22:59 : player: played "David Bowie - The Rise And Fall Of Ziggy Stardust And The Spiders From Mars/David Bowie - The Rise And Fall Of Ziggy Stardust And The Spiders From Mars.flac"
+Feb 20 23:19 : player: played "David Bowie - The Rise And Fall Of Ziggy Stardust And The Spiders From Mars/David Bowie - The Rise And Fall Of Ziggy Stardust And The Spiders From Mars.flac"
+Feb 21 14:33 : player: played "David Bowie - The Rise And Fall Of Ziggy Stardust And The Spiders From Mars/David Bowie - The Rise And Fall Of Ziggy Stardust And The Spiders From Mars.flac"
+Feb 21 15:07 : player: played "David Bowie - The Rise And Fall Of Ziggy Stardust And The Spiders From Mars/David Bowie - The Rise And Fall Of Ziggy Stardust And The Spiders From Mars.flac"
+Feb 21 15:08 : player: played "David Bowie - The Rise And Fall Of Ziggy Stardust And The Spiders From Mars/David Bowie - The Rise And Fall Of Ziggy Stardust And The Spiders From Mars.flac"
+Feb 21 21:34 : client: [0] opened from [::1]:42496
+Feb 21 21:34 : client: [0] closed
+Feb 21 21:38 : player: played "David Bowie - The Rise And Fall Of Ziggy Stardust And The Spiders From Mars/David Bowie - The Rise And Fall Of Ziggy Stardust And The Spiders From Mars.flac"
+Feb 21 21:45 : player: played "1969 - Space Oddity [vinyl]/10 - Memory of a Free Festival.flac"
+Feb 21 21:48 : player: played "David Bowie - The Rise And Fall Of Ziggy Stardust And The Spiders From Mars/David Bowie - The Rise And Fall Of Ziggy Stardust And The Spiders From Mars.flac"
+Feb 21 21:52 : player: played "David Bowie - The Rise And Fall Of Ziggy Stardust And The Spiders From Mars/David Bowie - The Rise And Fall Of Ziggy Stardust And The Spiders From Mars.flac"
+Feb 21 21:57 : player: played "1969 - Space Oddity [vinyl]/01 - Space Oddity.flac"
+Feb 21 22:01 : player: played "1969 - Space Oddity [vinyl]/13 - Memory of a Free Festival Part 2.flac"
+Feb 21 22:05 : player: played "1969 - Space Oddity [vinyl]/12 - Memory of a Free Festival Part 1.flac"
+Feb 21 22:08 : player: played "David Bowie - The Rise And Fall Of Ziggy Stardust And The Spiders From Mars/David Bowie - The Rise And Fall Of Ziggy Stardust And The Spiders From Mars.flac"
+Feb 21 22:13 : player: played "David Bowie - The Rise And Fall Of Ziggy Stardust And The Spiders From Mars/David Bowie - The Rise And Fall Of Ziggy Stardust And The Spiders From Mars.flac"
+Feb 21 22:16 : player: played "1969 - Space Oddity [vinyl]/09 - God Knows I'm Good.flac"
+Feb 21 22:26 : player: played "1969 - Space Oddity [vinyl]/05 - Cygnet Committee.flac"
+Feb 21 22:29 : player: played "David Bowie - The Rise And Fall Of Ziggy Stardust And The Spiders From Mars/David Bowie - The Rise And Fall Of Ziggy Stardust And The Spiders From Mars.flac"
+Feb 21 23:27 : client: [1] opened from [::1]:42670
+Feb 21 23:27 : client: [1] closed
+Feb 21 23:30 : player: played "David Bowie - The Rise And Fall Of Ziggy Stardust And The Spiders From Mars/David Bowie - The Rise And Fall Of Ziggy Stardust And The Spiders From Mars.flac"
+Feb 22 13:01 : client: [0] opened from [::1]:40004
+Feb 22 13:01 : client: [0] closed
+Feb 22 13:01 : client: [1] opened from [::1]:40006
+Feb 22 13:01 : client: [1] closed
+Feb 22 13:01 : client: [2] opened from [::1]:40008
+Feb 22 13:01 : client: [2] closed
+Feb 22 13:01 : client: [3] opened from [::1]:40010
+Feb 22 13:01 : client: [3] closed
+Feb 22 13:01 : client: [4] opened from [::1]:40012
+Feb 22 13:01 : client: [4] closed
+Feb 22 13:01 : client: [5] opened from [::1]:40014
+Feb 22 13:01 : client: [5] closed
+Feb 22 13:01 : client: [6] opened from [::1]:40016
+Feb 22 13:01 : client: [6] closed
+Feb 22 13:01 : client: [7] opened from [::1]:40018
+Feb 22 13:01 : client: [7] closed
+Feb 22 13:01 : client: [8] opened from [::1]:40020
+Feb 22 13:01 : client: [8] closed
+Feb 22 13:01 : client: [9] opened from [::1]:40022
+Feb 22 13:01 : client: [9] closed
+Feb 22 13:01 : client: [10] opened from [::1]:40024
+Feb 22 13:01 : client: [10] closed
+Feb 22 13:01 : client: [11] opened from [::1]:40026
+Feb 22 13:01 : client: [11] closed
+Feb 22 13:01 : client: [12] opened from [::1]:40028
+Feb 22 13:01 : client: [13] opened from [::1]:40030
+Feb 22 13:01 : client: [13] closed
+Feb 22 13:01 : client: [14] opened from [::1]:40032
+Feb 22 13:01 : client: [14] closed
+Feb 22 13:01 : client: [15] opened from [::1]:40034
+Feb 22 13:01 : client: [15] closed
+Feb 22 13:01 : client: [16] opened from [::1]:40036
+Feb 22 13:01 : client: [16] closed
+Feb 22 13:07 : player: played "1969 - Space Oddity [vinyl]/01 - Space Oddity.flac"
+Feb 22 13:11 : player: played "David Bowie - The Rise And Fall Of Ziggy Stardust And The Spiders From Mars/David Bowie - The Rise And Fall Of Ziggy Stardust And The Spiders From Mars.flac"
+Feb 22 13:14 : player: played "David Bowie - The Rise And Fall Of Ziggy Stardust And The Spiders From Mars/David Bowie - The Rise And Fall Of Ziggy Stardust And The Spiders From Mars.flac"
+Feb 22 13:18 : client: [17] opened from [::1]:40058
+Feb 22 13:18 : player: played "David Bowie - The Rise And Fall Of Ziggy Stardust And The Spiders From Mars/David Bowie - The Rise And Fall Of Ziggy Stardust And The Spiders From Mars.flac"
+Feb 22 13:18 : client: [17] closed
+Feb 22 13:18 : client: [18] opened from [::1]:40060
+Feb 22 13:18 : player: played "1969 - Space Oddity [vinyl]/02 - Unwashed and Somewhat Slightly Dazed.flac"
+Feb 22 13:18 : client: [18] closed
+Feb 22 13:18 : client: [19] opened from [::1]:40062
+Feb 22 13:18 : player: played "David Bowie - The Rise And Fall Of Ziggy Stardust And The Spiders From Mars/David Bowie - The Rise And Fall Of Ziggy Stardust And The Spiders From Mars.flac"
+Feb 22 13:18 : client: [19] closed
+Feb 22 13:20 : player: played "David Bowie - The Rise And Fall Of Ziggy Stardust And The Spiders From Mars/David Bowie - The Rise And Fall Of Ziggy Stardust And The Spiders From Mars.flac"
+Feb 22 13:23 : client: [12] closed
+Feb 22 13:24 : player: played "David Bowie - The Rise And Fall Of Ziggy Stardust And The Spiders From Mars/David Bowie - The Rise And Fall Of Ziggy Stardust And The Spiders From Mars.flac"
+Feb 22 13:33 : player: played "1969 - Space Oddity [vinyl]/05 - Cygnet Committee.flac"
+Feb 22 13:36 : player: played "David Bowie - The Rise And Fall Of Ziggy Stardust And The Spiders From Mars/David Bowie - The Rise And Fall Of Ziggy Stardust And The Spiders From Mars.flac"
+Feb 22 13:37 : player: played "1969 - Space Oddity [vinyl]/03 - (Don't Sit Down).flac"
+Feb 22 13:41 : player: played "David Bowie - The Rise And Fall Of Ziggy Stardust And The Spiders From Mars/David Bowie - The Rise And Fall Of Ziggy Stardust And The Spiders From Mars.flac"
+Feb 22 13:44 : player: played "1969 - Space Oddity [vinyl]/07 - An Occasional Dream.flac"
+Feb 22 13:47 : player: played "David Bowie - The Rise And Fall Of Ziggy Stardust And The Spiders From Mars/David Bowie - The Rise And Fall Of Ziggy Stardust And The Spiders From Mars.flac"
+Feb 22 13:50 : player: played "David Bowie - The Rise And Fall Of Ziggy Stardust And The Spiders From Mars/David Bowie - The Rise And Fall Of Ziggy Stardust And The Spiders From Mars.flac"
+Feb 22 13:54 : player: played "David Bowie - The Rise And Fall Of Ziggy Stardust And The Spiders From Mars/David Bowie - The Rise And Fall Of Ziggy Stardust And The Spiders From Mars.flac"
+Feb 22 13:57 : player: played "David Bowie - The Rise And Fall Of Ziggy Stardust And The Spiders From Mars/David Bowie - The Rise And Fall Of Ziggy Stardust And The Spiders From Mars.flac"
+Feb 22 14:00 : player: played "1969 - Space Oddity [vinyl]/13 - Memory of a Free Festival Part 2.flac"
+Feb 22 14:03 : player: played "David Bowie - The Rise And Fall Of Ziggy Stardust And The Spiders From Mars/David Bowie - The Rise And Fall Of Ziggy Stardust And The Spiders From Mars.flac"
+Feb 22 14:07 : player: played "David Bowie - The Rise And Fall Of Ziggy Stardust And The Spiders From Mars/David Bowie - The Rise And Fall Of Ziggy Stardust And The Spiders From Mars.flac"
+Feb 22 14:12 : player: played "David Bowie - The Rise And Fall Of Ziggy Stardust And The Spiders From Mars/David Bowie - The Rise And Fall Of Ziggy Stardust And The Spiders From Mars.flac"
+Feb 22 14:16 : player: played "1969 - Space Oddity [vinyl]/12 - Memory of a Free Festival Part 1.flac"
+Feb 22 14:23 : player: played "1969 - Space Oddity [vinyl]/10 - Memory of a Free Festival.flac"
+Feb 22 14:27 : player: played "1969 - Space Oddity [vinyl]/06 - Janine.flac"
+Feb 22 14:30 : player: played "1969 - Space Oddity [vinyl]/13 - Memory of a Free Festival Part 2.flac"
+Feb 22 14:33 : player: played "1969 - Space Oddity [vinyl]/11 - Conversation Piece.flac"
+Feb 22 14:36 : player: played "1969 - Space Oddity [vinyl]/04 - Letter to Hermione.flac"
+Feb 22 14:39 : player: played "David Bowie - The Rise And Fall Of Ziggy Stardust And The Spiders From Mars/David Bowie - The Rise And Fall Of Ziggy Stardust And The Spiders From Mars.flac"
+Feb 22 14:43 : player: played "1969 - Space Oddity [vinyl]/09 - God Knows I'm Good.flac"
+Feb 22 14:48 : player: played "1969 - Space Oddity [vinyl]/08 - Wild Eyed Boy From Freecloud.flac"
+Feb 23 11:59 : client: [20] opened from [::1]:52240
+Feb 23 11:59 : client: [20] closed
+Feb 23 11:59 : client: [21] opened from [::1]:52242
+Feb 23 11:59 : client: [21] closed
+Feb 23 11:59 : client: [22] opened from [::1]:52244
+Feb 23 11:59 : client: [22] closed
+Feb 23 11:59 : client: [23] opened from [::1]:52246
+Feb 23 11:59 : client: [23] closed
+Feb 23 11:59 : client: [24] opened from [::1]:52250
+Feb 23 11:59 : client: [24] closed
+Feb 23 11:59 : client: [25] opened from [::1]:52252
+Feb 23 12:04 : player: played "1969 - Space Oddity [vinyl]/01 - Space Oddity.flac"
+Feb 23 12:08 : player: played "1969 - Space Oddity [vinyl]/12 - Memory of a Free Festival Part 1.flac"
+Feb 23 12:14 : player: played "1969 - Space Oddity [vinyl]/02 - Unwashed and Somewhat Slightly Dazed.flac"
+Feb 23 12:22 : player: played "1969 - Space Oddity [vinyl]/10 - Memory of a Free Festival.flac"
+Feb 23 12:25 : player: played "1969 - Space Oddity [vinyl]/07 - An Occasional Dream.flac"
+Feb 23 12:27 : player: played "1969 - Space Oddity [vinyl]/04 - Letter to Hermione.flac"
+Feb 23 12:30 : client: [26] opened from [::1]:52350
+Feb 23 12:30 : client: [26] closed
+Feb 23 12:30 : client: [25] closed
+Feb 23 13:07 : player: played "1969 - Space Oddity [vinyl]/06 - Janine.flac"
+Feb 23 15:37 : player: played "1969 - Space Oddity [vinyl]/06 - Janine.flac"
+Feb 23 15:37 : player: played "1969 - Space Oddity [vinyl]/06 - Janine.flac"
+Feb 23 21:03 : client: [0] opened from [::1]:56588
+Feb 23 21:03 : client: [0] closed
+Feb 23 21:03 : client: [1] opened from [::1]:56590
+Feb 23 21:03 : player: played "1969 - Space Oddity [vinyl]/06 - Janine.flac"
+Feb 23 21:03 : client: [1] closed
+Feb 23 21:04 : client: [2] opened from [::1]:56836
+Feb 23 21:04 : player: played "1969 - Space Oddity [vinyl]/13 - Memory of a Free Festival Part 2.flac"
+Feb 23 21:04 : client: [2] closed
+Feb 24 13:44 : client: [0] opened from [::1]:52860
+Feb 24 13:44 : client: [0] closed
+Feb 24 13:44 : client: [1] opened from [::1]:52862
+Feb 24 13:44 : client: [1] closed
+Feb 27 13:14 : client: [0] opened from [::1]:47228
+Feb 27 13:14 : client: [0] closed
+Feb 27 13:14 : client: [1] opened from [::1]:47234
+Feb 27 13:14 : client: [1] closed
+Feb 28 00:30 : player: played "1969 - Space Oddity [vinyl]/11 - Conversation Piece.flac"
+Feb 29 14:09 : client: [0] opened from [::1]:59264
+Feb 29 14:09 : client: [0] closed
+Feb 29 14:12 : player: played "1969 - Space Oddity [vinyl]/11 - Conversation Piece.flac"
+Feb 29 14:22 : player: played "1969 - Space Oddity [vinyl]/05 - Cygnet Committee.flac"
+Mar 02 15:02 : client: [0] opened from [::1]:40082
+Mar 02 15:02 : client: [0] closed
+Mar 02 15:03 : player: played "1969 - Space Oddity [vinyl]/03 - (Don't Sit Down).flac"
+Mar 02 15:04 : client: [1] opened from [::1]:40126
+Mar 02 15:04 : client: [1] closed
+Mar 04 13:34 : player: played "1969 - Space Oddity [vinyl]/13 - Memory of a Free Festival Part 2.flac"
+Mar 04 14:05 : player: played "1969 - Space Oddity [vinyl]/13 - Memory of a Free Festival Part 2.flac"
+Mar 04 14:25 : player: played "1969 - Space Oddity [vinyl]/13 - Memory of a Free Festival Part 2.flac"
+Mar 04 18:59 : client: [0] opened from [::1]:54604
+Mar 04 18:59 : client: [0] closed
+Mar 04 18:59 : client: [1] opened from [::1]:54606
+Mar 04 18:59 : player: played "1969 - Space Oddity [vinyl]/13 - Memory of a Free Festival Part 2.flac"
+Mar 04 18:59 : client: [1] closed

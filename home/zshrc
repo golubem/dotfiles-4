@@ -17,7 +17,9 @@ export EDITOR='nvim'
 
 export GOPATH=$HOME/gocode
 
-export PATH="$GOPATH/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/anton/.cabal/bin:/scripts"
+export PATH="$(ruby -e 'print Gem.user_dir')/bin:$GOPATH/bin:/usr/local/sbin:\
+/usr/local/bin:/usr/bin:/usr/bin/site_perl:/usr/bin/vendor_perl\
+:/usr/bin/core_perl:/home/anton/.cabal/bin:/scripts"
 
 # Aliaces
 alias winmv='convmv -f cp1252 -t cp850 * --notest  && convmv -f cp866 -t utf-8 * --notest'

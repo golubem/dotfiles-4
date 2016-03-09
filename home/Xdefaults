@@ -1,7 +1,7 @@
 !---------------------------------------------------------------------
 ! Urxvt
 !URxvt*font:                 xft:terminus:size=12
-URxvt*font:                 xft:Hack:size=9:antialias=true
+URxvt*font:                 xft:Hack:size=10:antialias=true
 URxvt*iconFile:             /usr/share/icons/Faenza/apps/32/terminal.png
 URxvt*scrollBar:            false
 URxvt*perl-ext:             default,url-select
@@ -16,7 +16,7 @@ URxvt*url-select.underline: true
 XTerm*locale: true
 XTerm*metaSendsEscape: true
 Xterm*saveLines: 10000
-XTerm*faceName: terminus:size=12:antialias=false
+XTerm*faceName: xft:Hack:size=9:antialias=true
 XTerm*iconName: /usr/share/icons/Faenza/apps/32/xterm.png
 !XTerm*activeIcon: true
 

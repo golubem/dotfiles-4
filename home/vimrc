@@ -1,53 +1,48 @@
 "======================================================================
-" Base settings
+" Vim settings
 "======================================================================
+
+" automatically reload vimrc when it's saved
+au BufWritePost .vimrc so ~/.vimrc
 
 colorscheme Tomorrow-Night
-syntax      on
-set         background=dark
-set         shell=/bin/zsh
-set         encoding=utf-8
-set         mouse=a
-set         number
-set         incsearch
-set         wrap
-set         autoread
-set         linebreak
-set         scrolljump=4
-set         scrolloff=4
-set         ruler
-set         ignorecase
-set         smartcase
-set         clipboard=unnamedplus
-set         hidden
-set         modeline
-set         modelines=5
-set         tw=79
-set         colorcolumn=80
-set         incsearch
-let         mapleader=","
+syntax on
+set t_Co=256
+set background=dark
+set shell=/bin/zsh
+set encoding=utf-8
+set mouse=a
+set number
+set incsearch
+set wrap
+set autoread
+set linebreak
+set scrolljump=4
+set scrolloff=4
+set ruler
+set ignorecase
+set smartcase
+set clipboard=unnamedplus
+set hidden
+set modeline
+set modelines=5
+set tw=79
+set colorcolumn=80
+set incsearch
+let mapleader="\<Space>"
+set nocompatible
+syntax on
+filetype on
+filetype indent on
+filetype plugin on
 
-if has("gui_running")
-    set guifont=Hack\ Regular\ 9
-    set guioptions-=m
-    set guioptions-=T
-    set guioptions-=r
-    set guioptions-=L
-endif
-
-"======================================================================
-" Tabs
-"======================================================================
-
+" Indents
 set tabstop=4
 set shiftwidth=4
 set softtabstop=4
 set expandtab
 
-"======================================================================
 " History
-"======================================================================
-
 set history=64
 set undolevels=128
 set undodir=~/.vim/undodir/
@@ -55,27 +50,46 @@ set undofile
 set undolevels=1000
 set undoreload=10000
 
-"======================================================================
-" Manage buffers
-"======================================================================
-
-" Open new buffers in split
+" Buffers
 nmap <leader>s<left>   :leftabove  vnew<cr>
 nmap <leader>s<right>  :rightbelow vnew<cr>
 nmap <leader>s<up>     :leftabove  new<cr>
 nmap <leader>s<down>   :rightbelow new<cr>
 
-" Tab between buffers
 noremap <tab> <c-w><c-w>
 
-" Tabs navigation
-nnoremap X              :bp <bar> bd #<cr>
-nnoremap K              :bn<cr>
-nnoremap J              :bp<cr>
+nnoremap <leader>x      :bp <bar> bd #<cr>
+nnoremap <leader>n      :bn<cr>
+nnoremap <leader>p      :bp<cr>
+
+" Improved navigation on wraped lines
+nnoremap j gj
+nnoremap k gk
+
+" Save files which require root premissions
+cmap w!! %!sudo tee > /dev/null %
+
+inoremap jj <Esc> " Esc is so far away without this mapping...
+
+" Disable arrows
+map <Up> <NOP>
+map <Down> <NOP>
+map <Left> <NOP>
+map <Right> <NOP>
+imap <up> <nop>
+imap <down> <nop>
+imap <left> <nop>
+imap <right> <nop>
+
+" Move visual blocks
+vnoremap < <gv
+vnoremap > >gv
+
 
 "======================================================================
 " Plugins
 "======================================================================
+
 if empty(glob('~/.vim/autoload/plug.vim'))
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
@@ -84,29 +98,40 @@ endif
 
 call plug#begin('~/.vim/plugged')
 
+" Completion plugins
+Plug 'Valloric/YouCompleteMe' " Copletion opt plugin
+Plug 'Raimondi/delimitMate'   " Autoclose quotes and etc.
+Plug 'SirVer/ultisnips'
 
-Plug 'vim-scripts/dbext.vim'           " Databases support
-Plug 'junegunn/vim-easy-align'         " Aligning some equalities
+" Better feeling
+Plug 'easymotion/vim-easymotion'      " Fast navigation using shortcats
+Plug 'terryma/vim-expand-region'      " Expanding visual mode using v
+Plug 'godlygeek/tabular'              " Easy aligning
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+
+" Languages extensions
+Plug 'scrooloose/syntastic'      " Multi syntax
+Plug 'eagletmt/neco-ghc'         " Haskell completion
+Plug 'jvirtanen/vim-octave'      " Octave completion support
+Plug 'vim-scripts/dbext.vim'     " Databases support
+Plug 'lervag/vimtex'             " LaTeX
+Plug 'tpope/vim-rails'           " Ruby on Rails support
+Plug 'vim-ruby/vim-ruby'         " Ruby
+Plug 'cakebaker/scss-syntax.vim' " Sass syntax files
+Plug 'mattn/emmet-vim'           " Make HTML usable
+Plug 'fatih/vim-go'
+
+" Navigation
+Plug 'scrooloose/nerdtree'             " File explorer
+Plug 'kien/ctrlp.vim'                  " Fuzzy search for everything
+
+" Uncategorized
 Plug 'airblade/vim-gitgutter'          " Git command supports
 Plug 'bronson/vim-trailing-whitespace' " Removes useless whitespaces
 Plug 'tpope/vim-fugitive'              " Git wrapper for vim
-Plug 'scrooloose/syntastic'            " Multi syntax
-Plug 'scrooloose/nerdtree'             " File explorer
-Plug 'xolox/vim-misc'                  " Tags
-Plug 'kien/ctrlp.vim'                  " Fuzzy search for everything
-Plug 'suan/vim-instant-markdown'       " Markdown with preview
 Plug 'tpope/vim-surround'              " Surround quotes, tags and other
 Plug 'scrooloose/nerdcommenter'        " Comment tool
-Plug 'bling/vim-airline'               " Powerline
-Plug 'eagletmt/neco-ghc'               " Haskell completion
-Plug 'jvirtanen/vim-octave'            " Octave completion support
-Plug 'lervag/vimtex'                   " LaTeX
-Plug 'tpope/vim-rails'                 " Ruby on Rails support
-Plug 'SirVer/ultisnips'
-Plug 'Valloric/YouCompleteMe'
-
-" Ruby on Rails
-Plug 'tpope/vim-rails'
 
 
 call plug#end()
@@ -114,20 +139,34 @@ call plug#end()
 let g:haskellmode_completion_ghc = 0
 autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
 
+vmap v <Plug>(expand_region_expand)
+vmap <C-v> <Plug>(expand_region_shrink)
+
 "======================================================================
 " EasyAlign
 "======================================================================
 
-xmap ga <Plug>(EasyAlign)
-nmap ga <Plug>(EasyAlign)
-vnoremap <silent> <Enter> :EasyAlign<cr>
+" <Leader>f{char} to move to {char}
+map  <Leader>f <Plug>(easymotion-bd-f)
+nmap <Leader>f <Plug>(easymotion-overwin-f)
+
+" s{char}{char} to move to {char}{char}
+nmap s <Plug>(easymotion-overwin-f2)
+
+" Move to line
+map <Leader>L <Plug>(easymotion-bd-jk)
+nmap <Leader>L <Plug>(easymotion-overwin-line)
+
+" Move to word
+map  <Leader>w <Plug>(easymotion-bd-w)
+nmap <Leader>w <Plug>(easymotion-overwin-w)
 
 "======================================================================
 " CtrlP
 "======================================================================
 
 let g:ctrlp_show_hidden=1
-nmap <leader>b :CtrlPBuffer<cr>
+nmap <leader>p :CtrlP<cr>
 
 "=====================================================================
 " Vimtex
@@ -144,24 +183,19 @@ let g:vimtex_view_general_viewer='zathura'
 
 let g:airline#extensions#tabline#enabled=1
 let g:airline_powerline_fonts=1
-let g:airline_symbols={}
-let g:airline_left_sep=''
-let g:airline_left_alt_sep=''
-let g:airline_right_sep=''
-let g:airline_right_alt_=''
-let g:airline_symbols.br=''
-let g:airline_symbols.re=''
-let g:airline_symbols.li=''
+
+set showcmd
 
 "======================================================================
 " YouCompleteMe
 "======================================================================
 
+let g:ycm_seed_identifiers_with_syntax = 1
+
 let g:ycm_python_binary_path='/usr/bin/python'
 let g:ycm_add_preview_to_completeopt=0
 
 set completeopt-=preview
-
 
 "======================================================================
 " Syntastic
@@ -191,3 +225,17 @@ let g:syntastic_cpp_compiler_options=' -std=c++11 -stdlib=libc++'
 nmap <leader>m :NERDTreeToggle<CR>
 let  NERDTreeHighlightCursorline=1
 let  NERDTreeIgnore=['.yardoc', 'pkg']
+
+"======================================================================
+" Golang
+"======================================================================
+
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_structs = 1
+let g:go_highlight_interfaces = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_build_constraints = 1
+
+let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
+let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'] }

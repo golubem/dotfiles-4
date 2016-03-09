@@ -15,7 +15,7 @@ export LESSOPEN="| /usr/share/source-highlight/src-hilite-lesspipe.sh %s"
 export LESS=' -R '
 export EDITOR='nvim'
 
-export GOPATH=$HOME/gocode
+export GOPATH=$HOME/workdir/gocode
 
 export PATH="$(ruby -e 'print Gem.user_dir')/bin:$GOPATH/bin:/usr/local/sbin:\
 /usr/local/bin:/usr/bin:/usr/bin/site_perl:/usr/bin/vendor_perl\

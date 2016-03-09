@@ -65,12 +65,12 @@ myKeys = [ ("M-f",                      sendMessage $ Toggle NBFULL)
          ---------------------------------------------------------------
          -- Navigation
          ---------------------------------------------------------------
-         , ("M-<Left>",                 moveTo Prev $ WSIs notSP)
-         , ("M-<Right>",                moveTo Next $ WSIs notSP)
-         , ("M1-<Left>",                prevNonEmptyWS)
-         , ("M1-<Right>",               nextNonEmptyWS)
-         , ("M-S-<Left>",               shiftTo Prev (WSIs notSP) >> moveTo Prev (WSIs notSP))
-         , ("M-S-<Right>",              shiftTo Next (WSIs notSP) >> moveTo Next (WSIs notSP))
+         , ("M-h",                      moveTo Prev $ WSIs notSP)
+         , ("M-l",                      moveTo Next $ WSIs notSP)
+         , ("M-n",                      prevNonEmptyWS)
+         , ("M-p",                      nextNonEmptyWS)
+         , ("M-H",                      shiftTo Prev (WSIs notSP) >> moveTo Prev (WSIs notSP))
+         , ("M-L",                      shiftTo Next (WSIs notSP) >> moveTo Next (WSIs notSP))
 
          , ("M1-<Tab>",                 windows W.focusDown >> windows W.shiftMaster)
          , ("M1-S-<Tab>",               windows W.focusUp >> windows W.shiftMaster)
@@ -87,7 +87,7 @@ myKeys = [ ("M-f",                      sendMessage $ Toggle NBFULL)
          ---------------------------------------------------------------
          -- Run applications
          ---------------------------------------------------------------
-         , ("M-p",                      spawn "dmenu.sh")
+         , ("M-<KP_Enter>",                      spawn "dmenu.sh")
          , ("M-a",                      runOrRaise "firefox" (className =? "Firefox"))
          , ("<XF86HomePage>",           runOrRaise "firefox" (className =? "Firefox"))
          , ("M-e",                      spawn "spacefm")

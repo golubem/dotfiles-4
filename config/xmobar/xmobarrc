@@ -1,5 +1,5 @@
 -- vim: syntax=haskell
-Config { font = "xft:Terminus:size=9,Ionicons:size=9"
+Config { font = "xft:Terminus:size=9,Ionicons:size=8"
        , bgColor =      "#1d1f21"
        , fgColor =      "#c5c8c6"
        , position =     TopP 4 4
@@ -11,7 +11,10 @@ Config { font = "xft:Terminus:size=9,Ionicons:size=9"
        , overrideRedirect = True
        , pickBroadest = False
 
-       , template = "%UnsafeStdinReader% }{ %default:Master%  %wlp3s0wi%  %cpu%  %battery%  %date% <action=`xkb-switch -n`>%kbd%</action> "
+       , template = "%UnsafeStdinReader% }{ %mpd%\
+                    \<action=`urxvtc -e mutt`><fc=#81a2be>%gmail%</fc></action> \
+                    \%default:Master%  %wlp3s0wi%  %cpu%  %battery%  %date% \
+                    \<action=`xkb-switch -n`>%kbd%</action> "
 
        , commands = [ Run BatteryP ["BAT0"] [ "--template" , "<acstatus>"
                                 , "--Low"       , "13"        -- units: %
@@ -36,11 +39,19 @@ Config { font = "xft:Terminus:size=9,Ionicons:size=9"
                                         , "-w"          , "3"
                                         , "--"
                                         , "-c"          , "#d14548"
-                                        , "-o"          , " <volume>%"
+                                        , "-o"          , " <volume>%"
                                         , "-C"          , "#d2c5bc"
-                                        , "-O"          , " <volume>%"
+                                        , "-O"          , " <volume>%"
                                         ] 1
                     , Run UnsafeStdinReader
+                    , Run Mail [("   ", "~/.mail/gmail/INBOX")] "gmail"
+                    , Run MPD ["-t", "<action=`mpc toggle`><statei></action> \
+                                     \<action=`urxvt -e ncmpcpp`><artist> \
+                                     \- <title></action> [<flags>]"
+                              , "--"
+                              , "-P", "<fc=#8abeb7></fc>"
+                              , "-Z", ""
+                              , "-S", ""] 10
                     ]
        , sepChar = "%"
        , alignSep = "}{"

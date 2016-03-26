@@ -1,7 +1,7 @@
 !---------------------------------------------------------------------
 ! Urxvt
 !URxvt*font:                 xft:terminus:size=12
-URxvt*font:                 xft:Hack:size=10:antialias=true
+URxvt*font:                 xft:Hack:style=regular:size=9:antialias=true
 URxvt*iconFile:             /usr/share/icons/Faenza/apps/32/terminal.png
 URxvt*scrollBar:            false
 URxvt*perl-ext:             default,url-select
@@ -13,15 +13,19 @@ URxvt*url-select.underline: true
 !---------------------------------------------------------------------
 ! Xterm
 
+Xterm*saveLines: 4096
+XTerm*termName: xterm-256color
 XTerm*locale: true
-XTerm*metaSendsEscape: true
+!XTerm*metaSendsEscape: true
 Xterm*saveLines: 10000
-XTerm*faceName: xft:Hack:size=9:antialias=true
+XTerm*faceName: xft:Hack:size=10:antialias=true
 XTerm*iconName: /usr/share/icons/Faenza/apps/32/xterm.png
+XTerm*showMissingGlyphs: true
 !XTerm*activeIcon: true
 
 !---------------------------------------------------------------------
 ! Colors
+! Tommorow theme from terminal.sexy
 ! special
 *.foreground:   #c5c8c6
 *.background:   #1d1f21

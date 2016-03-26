@@ -6,9 +6,10 @@ set complete="lS"
 "set defsearch=duckduckgo
 "set hintchars=htnnsdueoaipyfg
 set gui=nonavigation
+set hc="hutenosagpc.bkwj"
 
-noremap T gt
-noremap H gT
+noremap K gt
+noremap J gT
 noremap j <down>
 noremap k <up>
 "noremap O t

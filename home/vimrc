@@ -2,11 +2,9 @@
 " Vim settings
 "======================================================================
 
-" automatically reload vimrc when it's saved
-au BufWritePost .vimrc so ~/.vimrc
-
 colorscheme Tomorrow-Night
 syntax on
+set showcmd
 set t_Co=256
 set background=dark
 set shell=/bin/zsh
@@ -85,6 +83,8 @@ imap <right> <nop>
 vnoremap < <gv
 vnoremap > >gv
 
+" Shift-Enter
+"imap  <CR><CR><Esc>-cc
 
 "======================================================================
 " Plugins
@@ -101,7 +101,7 @@ call plug#begin('~/.vim/plugged')
 " Completion plugins
 Plug 'Valloric/YouCompleteMe' " Copletion opt plugin
 Plug 'Raimondi/delimitMate'   " Autoclose quotes and etc.
-Plug 'SirVer/ultisnips'
+"Plug 'SirVer/ultisnips'
 
 " Better feeling
 Plug 'easymotion/vim-easymotion'      " Fast navigation using shortcats
@@ -109,6 +109,9 @@ Plug 'terryma/vim-expand-region'      " Expanding visual mode using v
 Plug 'godlygeek/tabular'              " Easy aligning
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+
+" Themes
+Plug 'tomasr/molokai'
 
 " Languages extensions
 Plug 'scrooloose/syntastic'      " Multi syntax
@@ -166,7 +169,6 @@ nmap <Leader>w <Plug>(easymotion-overwin-w)
 "======================================================================
 
 let g:ctrlp_show_hidden=1
-nmap <leader>p :CtrlP<cr>
 
 "=====================================================================
 " Vimtex
@@ -176,15 +178,6 @@ let g:vimtex_view_method='zathura'
 "let g:vimtex_fold_enabled=0
 "let g:vimtex_latexmk_options='-pdf -shell-escape'
 let g:vimtex_view_general_viewer='zathura'
-
-"======================================================================
-" Airline
-"======================================================================
-
-let g:airline#extensions#tabline#enabled=1
-let g:airline_powerline_fonts=1
-
-set showcmd
 
 "======================================================================
 " YouCompleteMe
@@ -239,3 +232,21 @@ let g:go_highlight_build_constraints = 1
 
 let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
 let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'] }
+
+"======================================================================
+" Airline
+"======================================================================
+set laststatus=2
+
+
+let g:airline#extensions#tabline#enabled=1
+let g:airline_powerline_fonts = 1
+let g:Powerline_symbols='unicode'
+
+if !exists('g:airline_symbols')
+    let g:airline_symbols = {}
+endif
+let g:airline_symbols.space = "\ua0"
+
+set showcmd
+

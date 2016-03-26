@@ -8,10 +8,8 @@
 # Keyboard settings
 ######################################################################
 kbd.sh -d
-setxkbmap -option 'grp:rctrl_toggle'
+setxkbmap -option 'grp:rctrl_toggle,lv3:ralt,compose:caps'
 kbdd &
-
-xmodmap -e "keycode 66 = ISO_Level3_Shift"
 
 ######################################################################
 # Autostart # TODO: Move to systemd --user
@@ -19,7 +17,7 @@ xmodmap -e "keycode 66 = ISO_Level3_Shift"
 
 pidgin &
 urxvtd &
-compton -b &
+#compton &
 xsetroot -cursor_name left_ptr
 hsetroot -solid '#202020'
 feh --bg-fill ~/.xmonad/wall.png --bg-fill ~/.xmonad/wall.png &

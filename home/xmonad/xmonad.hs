@@ -67,10 +67,10 @@ myKeys = [ ("M-f",                      sendMessage $ Toggle NBFULL)
          ---------------------------------------------------------------
          , ("M-h",                      moveTo Prev $ WSIs notSP)
          , ("M-l",                      moveTo Next $ WSIs notSP)
-         , ("M-n",                      prevNonEmptyWS)
-         , ("M-p",                      nextNonEmptyWS)
-         , ("M-H",                      shiftTo Prev (WSIs notSP) >> moveTo Prev (WSIs notSP))
-         , ("M-L",                      shiftTo Next (WSIs notSP) >> moveTo Next (WSIs notSP))
+         , ("M-p",                      prevNonEmptyWS)
+         , ("M-n",                      nextNonEmptyWS)
+         , ("M-S-h",                    shiftTo Prev (WSIs notSP) >> moveTo Prev (WSIs notSP))
+         , ("M-S-l",                    shiftTo Next (WSIs notSP) >> moveTo Next (WSIs notSP))
 
          , ("M1-<Tab>",                 windows W.focusDown >> windows W.shiftMaster)
          , ("M1-S-<Tab>",               windows W.focusUp >> windows W.shiftMaster)
@@ -84,16 +84,19 @@ myKeys = [ ("M-f",                      sendMessage $ Toggle NBFULL)
          , ("M1-S-h",                   windowSwap L False)
          , ("M1-S-l",                   windowSwap R False)
 
+         , ("M-S-j",                    sendMessage Shrink)
+         , ("M-S-k",                    sendMessage Expand)
+
          ---------------------------------------------------------------
          -- Run applications
          ---------------------------------------------------------------
-         , ("M-<KP_Enter>",                      spawn "dmenu.sh")
+         , ("M-<Return>",               spawn "dmenu.sh")
          , ("M-a",                      runOrRaise "firefox" (className =? "Firefox"))
          , ("<XF86HomePage>",           runOrRaise "firefox" (className =? "Firefox"))
          , ("M-e",                      spawn "spacefm")
-         , ("M-u",                      spawn "urxvtc -e ranger")
-         , ("<XF86MyComputer>",         spawn "urxvtc -e ranger")
-         , ("M-o",                      spawn "urxvtc -e nvim")
+         , ("M-u",                      spawn $ myTerminal ++ " -e ranger")
+         , ("<XF86MyComputer>",         spawn $ myTerminal ++ " -e ranger")
+         , ("M-o",                      spawn $ myTerminal ++ " -e nvim")
          , ("M-'",                      namedScratchpadAction myScratchPads "terminal")
          , ("M-q",                      namedScratchpadAction myScratchPads "torrent")
 
@@ -157,7 +160,7 @@ myLayout
     where
         pidginLayot = named "[I]" $ spacing 4 $ withIM (1%7) (Role "buddy_list") Grid
         tiled       = spaces $ Tall nmaster delta ratio
-        grid        = spaces $ Grid
+        grid        = spaces Grid
         spaces      = spacing 4
         nmaster     = 1
         ratio       = 1/2

@@ -35,7 +35,7 @@ Config { font = "xft:Terminus:size=9,Ionicons:size=8"
                               , "-w", "3"] 15
     		        , Run Date "<fc=#c5c8c6>%b %_d %H:%M:%S</fc>" "date" 10
                     , Run Kbd [("us(dvp)", "en"), ("ru(diktor)", "ru")]
-                    , Run Volume "default" "Master" [ "--template" , "<action=`amixer -q set Master toggle`><status></action>"
+                    , Run Volume "default" "Master" [ "--template" , "<action=`pactl set-sink-mute 1 toggle`><status></action>"
                                         , "-w"          , "3"
                                         , "--"
                                         , "-c"          , "#d14548"

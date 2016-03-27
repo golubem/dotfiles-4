@@ -113,9 +113,9 @@ myKeys = [ ("M-f",                      sendMessage $ Toggle NBFULL)
          ---------------------------------------------------------------
          , ("<XF86MonBrightnessUp>",    spawn "light -A 10")
          , ("<XF86MonBrightnessDown>",  spawn "light -U 10")
-         , ("<XF86AudioRaiseVolume>",   spawn "amixer set Master 2%+")
-         , ("<XF86AudioLowerVolume>",   spawn "amixer set Master 2%-")
-         , ("<XF86AudioMute>",          spawn "amixer set Master toggle")
+         , ("<XF86AudioRaiseVolume>",   spawn "pactl set-sink-mute 1 false ; pactl set-sink-volume 1 +2%")
+         , ("<XF86AudioLowerVolume>",   spawn "pactl set-sink-mute 1 false ; pactl set-sink-volume 1 -2%")
+         , ("<XF86AudioMute>",          spawn "pactl set-sink-mute 1 toggle")
          , ("<XF86Explorer>",           spawn "touchpad.sh -t")
          , ("<XF86LaunchA>",            spawn "kbd.sh -t")
 

@@ -1,7 +1,6 @@
 set flushinput False
 rename Hunter_X_Hunter_[16_of_62]_[ru_jp]_[MifSnaiper_&_Animereactor_Ru]q.srt
 set preview_images True
-
 open_with 
 open_with firefox
 open_with `
@@ -10,8 +9,22 @@ delete sudo
 sudo rm -rf
 q
 Q
-delete
 rename VirtualBox VMs
 search udis
 mpv
 mkdir 
+tab_new 
+
+delete
+rename
+rename passport_international.jpg
+re
+rename insurance_cert.jpg
+rename military-1.jpg
+rename military-2.jpg
+rename passport-1-2.jpg
+rename passport-4-5.jpg
+rename passport-18-19.jpg
+pager_move 
+rename lab_8.m
+rename lab_9.m

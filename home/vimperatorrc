@@ -3,7 +3,7 @@ colorscheme twily
 set animations=true
 set hintmatching=fuzzy
 set complete="lS"
-"set defsearch=duckduckgo
+set defsearch=duckduckgo
 "set hintchars=htnnsdueoaipyfg
 set gui=nonavigation
 set hc="hutenosagpc.bkwj"

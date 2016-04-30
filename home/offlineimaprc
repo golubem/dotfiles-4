@@ -14,6 +14,23 @@ localfolders = ~/.mail/gmail
 [Repository Gmail-Remote]
 type = Gmail
 remoteuser = plotnikovanton@gmail.com
-remotepasseval = get_pass()
+remotepasseval = get_pass("gmail")
 maxconnections = 3
 sslcacertfile = /etc/ssl/certs/ca-certificates.crt
+
+[Account TSystems]
+localrepository = TSystems-Local
+remoterepository = TSystems-Remote
+
+[Repository TSystems-Local]
+type = Maildir
+localfolders = ~/.mail/tsystems
+
+[Repository TSystems-Remote]
+type = IMAP
+remotehost = mail.t-systems.ru
+remoteport = 443
+ssl = yes
+remoteuser = t-systems\aplotnik
+remotepasseval = get_pass("t-systems")
+sslcacertfile = /etc/ssl/certs/t-systems.crt

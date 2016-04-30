@@ -111,6 +111,8 @@ myKeys = [ ("M-f",                      sendMessage $ Toggle NBFULL)
          ---------------------------------------------------------------
          -- Media keys
          ---------------------------------------------------------------
+         , ("<Print>",                  spawn "/scripts/screenshot.sh")
+         , ("M-<Print>",                spawn "/scripts/screenshot.sh -e")
          , ("<XF86MonBrightnessUp>",    spawn "light -A 10")
          , ("<XF86MonBrightnessDown>",  spawn "light -U 10")
          , ("<XF86AudioRaiseVolume>",   spawn "pactl set-sink-mute 1 false ; pactl set-sink-volume 1 +2%")
@@ -175,6 +177,7 @@ myManageHook = composeAll
     , namedScratchpadManageHook myScratchPads
     , className =? myBrowser            --> doShift (head myWorkspaces)
     , className =? "Plugin-container"   --> doFloat
+    , className =? "gnuplot_qt"         --> doFloat
     , className =? "Octave-gui"         --> doFloat
     , className =? "NeercGame"          --> doFloat
     , className =? "Pidgin"             --> doShift (myWorkspaces !! 8)
@@ -189,7 +192,7 @@ myManageHook = composeAll
 ------------------------------------------------------------------------
 -- Event handling
 ------------------------------------------------------------------------
-myEventHook = mempty
+myEventHook = docksEventHook
 
 ------------------------------------------------------------------------
 -- Colors
@@ -245,7 +248,7 @@ myStartupHook = setWMName "LG3D"
 ------------------------------------------------------------------------
 
 main = do
-    xmproc <- spawnPipe ".cabal/bin/xmobar 2> ~/err"
+    xmproc <- spawnPipe "LC_ALL=ru_RU.UTF-8 .cabal/bin/xmobar 2> ~/err"
     xmonad $ defaults xmproc
 
 --myNavigation2DConfig = defaultNavigation2DConfig { layoutNavigation     = [("Full", centerNavigation)`2]

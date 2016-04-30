@@ -2,33 +2,30 @@
 " Vim settings
 "======================================================================
 
-colorscheme Tomorrow-Night
 syntax on
-set showcmd
-set t_Co=256
 set background=dark
 set shell=/bin/zsh
 set encoding=utf-8
-set mouse=a
-set number
-set incsearch
-set wrap
-set autoread
-set linebreak
-set scrolljump=4
-set scrolloff=4
-set ruler
-set ignorecase
-set smartcase
-set clipboard=unnamedplus
-set hidden
+set spell                  " Spell check
+set spelllang=en_us,ru_ru
+set showcmd                " Shows which command is printed yet
+set mouse=a                " Adds a mouse support to
+set number                 " Displays line numbers
+set incsearch              " Incremental search feature
+set nohlsearch             " Prevent highlighting search results
+set smartcase              " Smart case in search sequence
+set wrap                   " Wraps text
+set autoread               " Autoread file if it was changed outside vim
+set scrolljump=4           " Minimal number of lines to scroll whet the cursor gets off the screen
+set scrolloff=4            " Minimal number of screen lines to keep above and below the cursor
+set ruler                  " Shows the line and column number of cursor position
+" set hidden
+set tw=79                  " Text width
+set colorcolumn=80         " Column to prevent long lines in code
 set modeline
 set modelines=5
-set tw=79
-set colorcolumn=80
-set incsearch
+
 let mapleader="\<Space>"
-set nocompatible
 syntax on
 filetype on
 filetype indent on
@@ -43,8 +40,8 @@ set expandtab
 " History
 set history=64
 set undolevels=128
-set undodir=~/.vim/undodir/
 set undofile
+set undodir=~/.config/nvim/undodir/
 set undolevels=1000
 set undoreload=10000
 
@@ -60,11 +57,11 @@ nnoremap <leader>x      :bp <bar> bd #<cr>
 nnoremap <leader>n      :bn<cr>
 nnoremap <leader>p      :bp<cr>
 
-" Improved navigation on wraped lines
+" Improved navigation on wrapped lines
 nnoremap j gj
 nnoremap k gk
 
-" Save files which require root premissions
+" Save files which require root permission
 cmap w!! %!sudo tee > /dev/null %
 
 inoremap jj <Esc> " Esc is so far away without this mapping...
@@ -86,32 +83,39 @@ vnoremap > >gv
 " Shift-Enter
 "imap  <CR><CR><Esc>-cc
 
+" Expand visual region by pressing v
+vmap v <Plug>(expand_region_expand)
+vmap <C-v> <Plug>(expand_region_shrink)
+
 "======================================================================
 " Plugins
 "======================================================================
 
-if empty(glob('~/.vim/autoload/plug.vim'))
-  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+if empty(glob('~/.config/nvim/autoload/plug.vim'))
+  silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
   autocmd VimEnter * PlugInstall | source $MYVIMRC
 endif
 
-call plug#begin('~/.vim/plugged')
+call plug#begin('~/.config/nvim/plugged')
 
 " Completion plugins
-Plug 'Valloric/YouCompleteMe' " Copletion opt plugin
-Plug 'Raimondi/delimitMate'   " Autoclose quotes and etc.
-"Plug 'SirVer/ultisnips'
+Plug 'Valloric/YouCompleteMe'                       " Completion opt plugin
+Plug 'rdnetto/YCM-Generator', { 'branch': 'stable'} " generates extra_conf.py depends on build system conf
+Plug 'Raimondi/delimitMate'                         " Auto close quotes and etc.
+Plug 'SirVer/ultisnips'                             " Ultisnippets configuration
 
 " Better feeling
-Plug 'easymotion/vim-easymotion'      " Fast navigation using shortcats
+Plug 'easymotion/vim-easymotion'      " Fast navigation using shortcuts
 Plug 'terryma/vim-expand-region'      " Expanding visual mode using v
 Plug 'godlygeek/tabular'              " Easy aligning
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+Plug 'vim-airline/vim-airline'        " Fancy status line as fuck
+Plug 'vim-airline/vim-airline-themes' " Fancy themes for fancy status line
+Plug 'majutsushi/tagbar'              " Tagbar
 
 " Themes
 Plug 'tomasr/molokai'
+Plug 'squarefrog/tomorrow-night.vim'
 
 " Languages extensions
 Plug 'scrooloose/syntastic'      " Multi syntax
@@ -123,37 +127,30 @@ Plug 'tpope/vim-rails'           " Ruby on Rails support
 Plug 'vim-ruby/vim-ruby'         " Ruby
 Plug 'cakebaker/scss-syntax.vim' " Sass syntax files
 Plug 'mattn/emmet-vim'           " Make HTML usable
-Plug 'fatih/vim-go'
+Plug 'fatih/vim-go'              " Full feature GO support
 
 " Navigation
-Plug 'scrooloose/nerdtree'             " File explorer
-Plug 'kien/ctrlp.vim'                  " Fuzzy search for everything
+Plug 'scrooloose/nerdtree' " File explorer
+Plug 'kien/ctrlp.vim'      " Fuzzy search for everything
 
 " Uncategorized
 Plug 'airblade/vim-gitgutter'          " Git command supports
 Plug 'bronson/vim-trailing-whitespace' " Removes useless whitespaces
-Plug 'tpope/vim-fugitive'              " Git wrapper for vim
 Plug 'tpope/vim-surround'              " Surround quotes, tags and other
 Plug 'scrooloose/nerdcommenter'        " Comment tool
 
 
 call plug#end()
 
-let g:haskellmode_completion_ghc = 0
-autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
-
-vmap v <Plug>(expand_region_expand)
-vmap <C-v> <Plug>(expand_region_shrink)
+colorscheme tomorrow-night
 
 "======================================================================
 " EasyAlign
 "======================================================================
 
-" <Leader>f{char} to move to {char}
 map  <Leader>f <Plug>(easymotion-bd-f)
 nmap <Leader>f <Plug>(easymotion-overwin-f)
 
-" s{char}{char} to move to {char}{char}
 nmap s <Plug>(easymotion-overwin-f2)
 
 " Move to line
@@ -185,8 +182,14 @@ let g:vimtex_view_general_viewer='zathura'
 
 let g:ycm_seed_identifiers_with_syntax = 1
 
+let g:UltiSnipsExpandTrigger="<c-j>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
 let g:ycm_python_binary_path='/usr/bin/python'
 let g:ycm_add_preview_to_completeopt=0
+
+"let g:ycm_global_ycm_extra_conf = "~/.vim/.ycm_extra_conf.py"
 
 set completeopt-=preview
 

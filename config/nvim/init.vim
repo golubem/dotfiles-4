@@ -19,7 +19,7 @@ set autoread               " Autoread file if it was changed outside vim
 set scrolljump=4           " Minimal number of lines to scroll whet the cursor gets off the screen
 set scrolloff=4            " Minimal number of screen lines to keep above and below the cursor
 set ruler                  " Shows the line and column number of cursor position
-" set hidden
+set hidden
 set tw=79                  " Text width
 set colorcolumn=80         " Column to prevent long lines in code
 set modeline
@@ -60,6 +60,27 @@ nnoremap <leader>p      :bp<cr>
 " Improved navigation on wrapped lines
 nnoremap j gj
 nnoremap k gk
+
+"======================================================================
+" SPECIAL VIM MAGIC
+"======================================================================
+
+" Switch to US layout on normal mode
+let w:layout='us'
+function! SetUsLayout()
+    let w:layout=system('xkblayout-state print %s')
+    silent ! xkblayout-state set 0
+endfunction
+
+function! RestoreLayout()
+    echo w:layout
+    if w:layout != 'us'
+        silent ! xkblayout-state set 1
+    endif
+endfunction
+
+autocmd InsertLeave * call SetUsLayout()
+autocmd InsertEnter * call RestoreLayout()
 
 " Save files which require root permission
 cmap w!! %!sudo tee > /dev/null %
@@ -172,8 +193,7 @@ let g:ctrlp_show_hidden=1
 "=====================================================================
 
 let g:vimtex_view_method='zathura'
-"let g:vimtex_fold_enabled=0
-"let g:vimtex_latexmk_options='-pdf -shell-escape'
+let g:vimtex_latexmk_programe='nvr'
 let g:vimtex_view_general_viewer='zathura'
 
 "======================================================================

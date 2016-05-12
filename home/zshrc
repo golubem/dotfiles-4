@@ -19,6 +19,7 @@ export LESS=' -R '
 export EDITOR='nvim'
 
 export GOPATH=$HOME/workdir/gocode
+export STEAM_RUNTIME=0
 
 export PATH="$(ruby -e 'print Gem.user_dir')/bin:$GOPATH/bin:/usr/local/sbin:\
 /usr/local/bin:/usr/bin:/usr/bin/site_perl:/usr/bin/vendor_perl\

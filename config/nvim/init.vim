@@ -6,13 +6,14 @@ syntax on
 set background=dark
 set shell=/bin/zsh
 set encoding=utf-8
-set spell                  " Spell check
+"set spell                  " Spell check
 set spelllang=en_us,ru_ru
 set showcmd                " Shows which command is printed yet
 set mouse=a                " Adds a mouse support to
 set number                 " Displays line numbers
 set incsearch              " Incremental search feature
 set nohlsearch             " Prevent highlighting search results
+set ignorecase
 set smartcase              " Smart case in search sequence
 set wrap                   " Wraps text
 set autoread               " Autoread file if it was changed outside vim
@@ -66,15 +67,14 @@ nnoremap k gk
 "======================================================================
 
 " Switch to US layout on normal mode
-let w:layout='us'
+let g:layout='us'
 function! SetUsLayout()
-    let w:layout=system('xkblayout-state print %s')
+    let g:layout=system('xkblayout-state print %s')
     silent ! xkblayout-state set 0
 endfunction
 
 function! RestoreLayout()
-    echo w:layout
-    if w:layout != 'us'
+    if g:layout != 'us'
         silent ! xkblayout-state set 1
     endif
 endfunction
@@ -121,10 +121,22 @@ endif
 call plug#begin('~/.config/nvim/plugged')
 
 " Completion plugins
-Plug 'Valloric/YouCompleteMe'                       " Completion opt plugin
-Plug 'rdnetto/YCM-Generator', { 'branch': 'stable'} " generates extra_conf.py depends on build system conf
-Plug 'Raimondi/delimitMate'                         " Auto close quotes and etc.
+function! DoRemote(arg)
+  UpdateRemotePlugins
+endfunction
+Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
+
+"Plug 'Raimondi/delimitMate'                         " Auto close quotes and etc.
 Plug 'SirVer/ultisnips'                             " Ultisnippets configuration
+
+function! BuildComposer(info)
+  if a:info.status != 'unchanged' || a:info.force
+    !cargo build --release
+    UpdateRemotePlugins
+  endif
+endfunction
+
+Plug 'euclio/vim-markdown-composer', { 'do': function('BuildComposer') }
 
 " Better feeling
 Plug 'easymotion/vim-easymotion'      " Fast navigation using shortcuts
@@ -145,10 +157,15 @@ Plug 'jvirtanen/vim-octave'      " Octave completion support
 Plug 'vim-scripts/dbext.vim'     " Databases support
 Plug 'lervag/vimtex'             " LaTeX
 Plug 'tpope/vim-rails'           " Ruby on Rails support
+Plug 'tpope/vim-endwise'         " wisely add 'end' in ruby, endfunction/endif/more in vim script
+Plug 'kchmck/vim-coffee-script'  " Support of Coffee script
 Plug 'vim-ruby/vim-ruby'         " Ruby
 Plug 'cakebaker/scss-syntax.vim' " Sass syntax files
 Plug 'mattn/emmet-vim'           " Make HTML usable
 Plug 'fatih/vim-go'              " Full feature GO support
+Plug 'Shougo/deoplete.nvim'
+Plug 'zchee/deoplete-go', { 'do': 'make'}
+Plug 'slim-template/vim-slim'
 
 " Navigation
 Plug 'scrooloose/nerdtree' " File explorer
@@ -193,25 +210,26 @@ let g:ctrlp_show_hidden=1
 "=====================================================================
 
 let g:vimtex_view_method='zathura'
-let g:vimtex_latexmk_programe='nvr'
+let g:vimtex_latexmk_progname='nvr'
 let g:vimtex_view_general_viewer='zathura'
 
 "======================================================================
-" YouCompleteMe
+" Deoplete
 "======================================================================
 
-let g:ycm_seed_identifiers_with_syntax = 1
+let g:deoplete#enable_at_startup = 1
+let g:deoplete#sources#go#gocode_binary = $GOPATH.'/bin/gocode'
+let g:deoplete#sources#go#sort_class = ['package', 'func', 'type', 'var', 'const']
+
+set completeopt-=preview
+
+"======================================================================
+" UltiSnips
+"======================================================================
 
 let g:UltiSnipsExpandTrigger="<c-j>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-
-let g:ycm_python_binary_path='/usr/bin/python'
-let g:ycm_add_preview_to_completeopt=0
-
-"let g:ycm_global_ycm_extra_conf = "~/.vim/.ycm_extra_conf.py"
-
-set completeopt-=preview
 
 "======================================================================
 " Syntastic
@@ -255,6 +273,16 @@ let g:go_highlight_build_constraints = 1
 
 let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
 let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'] }
+
+"======================================================================
+" Ruby
+"======================================================================
+
+autocmd Filetype ruby setlocal ts=2 sts=2 sw=2
+autocmd Filetype coffee setlocal ts=2 sts=2 sw=2
+
+let g:rubycomplete_buffer_loading = 1
+let g:rubycomplete_rails = 1
 
 "======================================================================
 " Airline

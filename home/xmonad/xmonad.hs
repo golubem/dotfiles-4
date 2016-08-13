@@ -19,6 +19,8 @@ import XMonad.Layout.MultiToggle.Instances
 import XMonad.Layout.NoBorders
 import XMonad.Layout.SimplestFloat
 
+import XMonad.Actions.FloatKeys                 -- move windows by keyboard
+
 import XMonad.Util.Run
 import XMonad.Util.NamedScratchpad
 import XMonad.Util.WorkspaceCompare
@@ -45,10 +47,9 @@ myClickJustFocuses = False
 
 myBorderWidth   = 2
 myModMask       = mod4Mask
---myBrowser       = "qutebrowser"
-myBrowser       = "firefox"
+myBrowser       = "qutebrowser"
 
-myWorkspaces = clickable ["web","dev","term","4","5","6","7","media","im"]
+myWorkspaces = clickable ["\xf0ac","\xf044","\xf120","4","5","6","7","\xf26c","\xf086"]
     where clickable l = ["<action=`xdotool key super+" ++ i ++ "`>" ++ ws ++ "</action>" | (i,ws) <- zip keymap l ]
           keymap = ["U26", "U5B", "U7B", "U7D", "U28", "U3D", "U2A", "U29", "U2B"]
 
@@ -56,17 +57,19 @@ myWorkspaces = clickable ["web","dev","term","4","5","6","7","media","im"]
 ------------------------------------------------------------------------
 -- Key bindings. Add, modify or remove key bindings here.
 ------------------------------------------------------------------------
-
 myKeys = [ ("M-f",                      sendMessage $ Toggle NBFULL)
          , ("M-m",                      sendMessage ToggleStruts)
          , ("M1-<F4>",                  kill)
          , ("M-r",                      spawn "pkill -KILL xmobar || xmonad --recompile && xmonad --restart")
          , ("M-<F12>",                  spawn "xautolock -locknow")
+         , ("M-<F11>",                  spawn "/scripts/monitor-hotplug.rb")
          ---------------------------------------------------------------
          -- Navigation
          ---------------------------------------------------------------
          , ("M-h",                      moveTo Prev $ WSIs notSP)
          , ("M-l",                      moveTo Next $ WSIs notSP)
+         , ("M-<Left>",                 moveTo Prev $ WSIs notSP)
+         , ("M-<Right>",                moveTo Next $ WSIs notSP)
          , ("M-p",                      prevNonEmptyWS)
          , ("M-n",                      nextNonEmptyWS)
          , ("M-S-h",                    shiftTo Prev (WSIs notSP) >> moveTo Prev (WSIs notSP))
@@ -74,8 +77,8 @@ myKeys = [ ("M-f",                      sendMessage $ Toggle NBFULL)
 
          , ("M1-<Tab>",                 windows W.focusDown >> windows W.shiftMaster)
          , ("M1-S-<Tab>",               windows W.focusUp >> windows W.shiftMaster)
-         , ("M1-j",                     windows W.focusDown)
-         , ("M1-k",                     windows W.focusUp)
+         , ("M1-j",                     windowGo D False)
+         , ("M1-k",                     windowGo U False)
          , ("M1-h",                     windowGo L False)
          , ("M1-l",                     windowGo R False)
 
@@ -91,8 +94,8 @@ myKeys = [ ("M-f",                      sendMessage $ Toggle NBFULL)
          -- Run applications
          ---------------------------------------------------------------
          , ("M-<Return>",               spawn "dmenu.sh")
-         , ("M-a",                      runOrRaise "firefox" (className =? "Firefox"))
-         , ("<XF86HomePage>",           runOrRaise "firefox" (className =? "Firefox"))
+         , ("M-a",                      runOrRaise myBrowser (className =? myBrowser))
+         , ("<XF86HomePage>",           runOrRaise myBrowser (className =? myBrowser))
          , ("M-e",                      spawn "spacefm")
          , ("M-u",                      spawn $ myTerminal ++ " -e ranger")
          , ("<XF86MyComputer>",         spawn $ myTerminal ++ " -e ranger")
@@ -147,10 +150,10 @@ myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList
     , ((modm, button2), \w -> focus w >> windows W.shiftMaster)
     , ((modm, button3), \w -> focus w >> Flex.mouseResizeWindow w)
     ]
+
 ------------------------------------------------------------------------
 -- Layouts
 ------------------------------------------------------------------------
-
 myLayout
     = smartBorders
     -- $ mkToggle (single NBFULL)
@@ -171,7 +174,6 @@ myLayout
 ------------------------------------------------------------------------
 -- Window rules
 ------------------------------------------------------------------------
-
 myManageHook = composeAll
     [ manageDocks
     , namedScratchpadManageHook myScratchPads
@@ -197,28 +199,36 @@ myEventHook = docksEventHook
 ------------------------------------------------------------------------
 -- Colors
 ------------------------------------------------------------------------
-myNormalBorderColor     = "#202020"
-myFocusedBorderColor    = "#606060"
-myFgColor               = "#c5c8c6"
-myBgColor               = "#1d1f21"
-myBgHLight              = "#202020"
-myFgHLight              = "#fff0f0"
-
-yellowColor             = "#f0c674"
-blueColor               = "#81a2be"
+myBlack         = "#1d1f21"
+myDarkestGray   = "#282a2e"
+myDarkGray      = "#373b41"
+myGray          = "#969896"
+myLightGray     = "#b4b7b4"
+myLighterGray   = "#c5c8c6"
+myLighterstGray = "#e0e0e0"
+myWhite         = "#ffffff"
+myRed           = "#cc6666"
+myOrange        = "#de935f"
+myYellow        = "#f0c674"
+myGreen         = "#b5bd68"
+myLemon         = "#8abeb7"
+myBlue          = "#81a2be"
+myPurple        = "#b294bb"
+myDarkRed       = "#a3685a"
 
 ------------------------------------------------------------------------
 -- Status bars and logging
 ------------------------------------------------------------------------
 myLogHook xmproc = dynamicLogWithPP $ xmobarPP
                    { ppOutput = hPutStrLn xmproc
-                   , ppCurrent = xmobarColor blueColor myBgColor
-                   , ppUrgent = xmobarColor "#202020" "#ac4142"
-                   --, ppVisible = xmobarColor "#90a959" "#151515"
+                   , ppCurrent = xmobarColor myBlue myBlack
+                   , ppHiddenNoWindows = xmobarColor myDarkGray myBlack
+                   , ppUrgent = xmobarColor myDarkGray myDarkRed
+                   , ppVisible = xmobarColor "#90a959" "#151515"
                    , ppSep = " : "
-                   , ppLayout = xmobarColor "#d0d0d0" ""
+                   , ppLayout = xmobarColor myLighterGray ""
                    , ppOrder = \(ws:l:t:_) -> [" " ++ l,ws,t]
-                   , ppTitle = xmobarColor "#d0d0d0" "" . shorten 140
+                   , ppTitle = xmobarColor myLighterGray "" . shorten 140
                    , ppSort = (. namedScratchpadFilterOutWorkspace) <$> ppSort defaultPP
                    }
 
@@ -226,7 +236,8 @@ myLogHook xmproc = dynamicLogWithPP $ xmobarPP
 -- Scratchpads
 ------------------------------------------------------------------------
 myScratchPads = [ NS "terminal" "urxvtc -name 'scratchpad' -e bash -c 'tmux a -t scratchpad || tmux new -s scratchpad'" (resource =? "scratchpad") floatingTerm
-                , NS "torrent" "transmission-gtk" (stringProperty "WM_NAME" =? "Transmission") floatingRt
+                , NS "torrent" "urxvtc -name 'torrent' -e bash -c 'transmission-remote-cli'" (resource =? "torrent") floatingTerm
+                --, NS "torrent" "transmission-gtk" (stringProperty "WM_NAME" =? "Transmission") floatingRt
                 ]
                 where
                     floatingTerm = customFloating $ W.RationalRect l t w h where
@@ -243,17 +254,23 @@ myScratchPads = [ NS "terminal" "urxvtc -name 'scratchpad' -e bash -c 'tmux a -t
 -- Startup hook
 ------------------------------------------------------------------------
 myStartupHook = setWMName "LG3D"
+
+------------------------------------------------------------------------
+-- Navigation 2D config
+------------------------------------------------------------------------
+myNavigation2DConfig = defaultNavigation2DConfig {
+    defaultTiledNavigation = centerNavigation
+}
+
 ------------------------------------------------------------------------
 -- Now run xmonad with all the defaults we set up.
 ------------------------------------------------------------------------
 
 main = do
     xmproc <- spawnPipe "LC_ALL=ru_RU.UTF-8 .cabal/bin/xmobar 2> ~/err"
-    xmonad $ defaults xmproc
+    xmonad $ withNavigation2DConfig myNavigation2DConfig
+           $ defaults xmproc
 
---myNavigation2DConfig = defaultNavigation2DConfig { layoutNavigation     = [("Full", centerNavigation)`2]
---                                                 , unmappedWindowRect   = [("Full", singleWindowRect)]
---                                                 }
 defaults xmproc = defaultConfig
     { terminal            = myTerminal
       ,focusFollowsMouse  = myFocusFollowsMouse
@@ -261,8 +278,8 @@ defaults xmproc = defaultConfig
       ,borderWidth        = myBorderWidth
       ,modMask            = myModMask
       ,workspaces         = myWorkspaces
-      ,normalBorderColor  = myNormalBorderColor
-      ,focusedBorderColor = myFocusedBorderColor
+      ,normalBorderColor  = myDarkGray
+      ,focusedBorderColor = myGray
       ,mouseBindings      = myMouseBindings
       ,layoutHook         = mkToggle (single NBFULL) $ avoidStruts myLayout
       ,manageHook         = fullscreenManageHook <+> myManageHook
@@ -271,3 +288,4 @@ defaults xmproc = defaultConfig
       ,startupHook        = myStartupHook
       --,keys               = myKeys
     } `additionalKeysP` myKeys
+

@@ -1,11 +1,11 @@
 -- vim: syntax=haskell
-Config { font = "xft:Terminus:size=9,Ionicons:size=9"
+Config { font = "xft:Terminus:size=8,FontAwesome:size=8"
        , bgColor =      "#1d1f21"
        , fgColor =      "#c5c8c6"
        , position =     TopP 4 4
        --, position =     TopSize C 100 25
        , iconRoot =     "."
-       , textOffset =   -3
+       , textOffset =   -1
        --, iconOffset = -2
        , allDesktops = True
        , overrideRedirect = True
@@ -21,17 +21,17 @@ Config { font = "xft:Terminus:size=9,Ionicons:size=9"
                                 , "--High"      , "70"        -- units: %
                                 , "-w"          , "3"
                                 , "--"
-                                , "-o"          , " <left>%"
-                                , "-O"          , " <left>%"
-                                , "-i"          , " <left>%"
+                                , "-o"          , "\xf241<left>%"
+                                , "-O"          , "\xf0e7<left>%"
+                                , "-i"          , "\xf0e7<left>%"
                                 ] 15
                     , Run Wireless "wlp3s0" [ "--template"
-                                            , "<action=`wifi-notify.py wlp3s0`> <quality>%</action>"
+                                            , "<action=`wifi-notify.py wlp3s0`>\xf1eb <quality>%</action>"
                                             , "-w"
                                             , "3"
                                             ] 5
                     , Run Cpu [ "--template"
-                              , "<action=`urxvtc -e htop`> <total>%</action>"
+                              , "<action=`urxvtc -e htop`>\xf1fe<total>%</action>"
                               , "-w", "3"] 15
     		        , Run Date "<fc=#c5c8c6>%b %_d %H:%M:%S</fc>" "date" 10
                     , Run Kbd [("us(dvp)", "en"), ("ru(diktor)", "ru")]
@@ -39,19 +39,19 @@ Config { font = "xft:Terminus:size=9,Ionicons:size=9"
                                         , "-w"          , "3"
                                         , "--"
                                         , "-c"          , "#d14548"
-                                        , "-o"          , " <volume>%"
+                                        , "-o"          , "\xf026<volume>%"
                                         , "-C"          , "#d2c5bc"
-                                        , "-O"          , " <volume>%"
+                                        , "-O"          , "\xf028<volume>%"
                                         ] 1
                     , Run UnsafeStdinReader
-                    , Run Mail [("   ", "~/.mail/gmail/INBOX")] "gmail"
+                    , Run Mail [("  \xf0e0 ", "~/.mail/gmail/INBOX")] "gmail"
                     , Run MPD ["-t", "<action=`mpc toggle`><statei></action> \
                                      \<action=`urxvt -e ncmpcpp`><artist> \
                                      \- <title></action> [<flags>]"
                               , "--"
-                              , "-P", "<fc=#8abeb7></fc>"
-                              , "-Z", ""
-                              , "-S", ""] 10
+                              , "-P", "<fc=#8abeb7>\xf04b</fc>"
+                              , "-Z", "\xf04c"
+                              , "-S", "\xf04d"] 10
                     ]
        , sepChar = "%"
        , alignSep = "}{"

@@ -9,7 +9,9 @@ unset record
 
 mailboxes +INBOX
 
-macro index,pager a "<save-message>+[Gmail].All Mail" "Archive"
+macro index,pager a \
+    "<save-message>+[Gmail].All Mail<enter>" \
+    "Archive"
 
 macro index D \
     "<save-message>+[Gmail].Trash<enter>" \

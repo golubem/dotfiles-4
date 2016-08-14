@@ -158,15 +158,16 @@ myLayout
     = smartBorders
     -- $ mkToggle (single NBFULL)
     $ onWorkspace (myWorkspaces !! 8) pidginLayot
-    $ named "[T]" tiled |||
-      named "[M]" (Mirror tiled) |||
-      named "[G]" grid |||
-      named "[F]" Full
+    $ named "<icon=tiled.xpm/>" tiled |||
+      named "<icon=mirror-tiled.xpm/>" (Mirror tiled) |||
+      named "<icon=grid.xpm/>" grid |||
+      named "<icon=full.xpm/>" full
     where
-        pidginLayot = named "[I]" $ spacing 4 $ withIM (1%7) (Role "buddy_list") Grid
+        pidginLayot = named "<icon=im.xpm/>" $ spacing 4 $ withIM (1%7) (Role "buddy_list") Grid
         tiled       = spaces $ Tall nmaster delta ratio
         grid        = spaces Grid
         spaces      = spacing 4
+        full        = spaces Full
         nmaster     = 1
         ratio       = 1/2
         delta       = 3/100

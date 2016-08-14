@@ -42,7 +42,7 @@ set expandtab
 set history=64
 set undolevels=128
 set undofile
-set undodir=~/.config/nvim/undodir/
+set undodir=~/.config/nvim/undodir
 set undolevels=1000
 set undoreload=10000
 
@@ -112,6 +112,7 @@ vmap <C-v> <Plug>(expand_region_shrink)
 " Plugins
 "======================================================================
 
+" Install vimplug if not exists
 if empty(glob('~/.config/nvim/autoload/plug.vim'))
   silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
@@ -120,23 +121,14 @@ endif
 
 call plug#begin('~/.config/nvim/plugged')
 
-" Completion plugins
-function! DoRemote(arg)
-  UpdateRemotePlugins
-endfunction
-Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
-
-"Plug 'Raimondi/delimitMate'                         " Auto close quotes and etc.
-Plug 'SirVer/ultisnips'                             " Ultisnippets configuration
-
-function! BuildComposer(info)
-  if a:info.status != 'unchanged' || a:info.force
-    !cargo build --release
-    UpdateRemotePlugins
-  endif
-endfunction
-
-Plug 'euclio/vim-markdown-composer', { 'do': function('BuildComposer') }
+" Markdown WYSIWYG
+"function! BuildComposer(info)
+  "if a:info.status != 'unchanged' || a:info.force
+    "!cargo build --release
+    "UpdateRemotePlugins
+  "endif
+"endfunction
+"Plug 'euclio/vim-markdown-composer', { 'do': function('BuildComposer') }
 
 " Better feeling
 Plug 'easymotion/vim-easymotion'      " Fast navigation using shortcuts
@@ -145,31 +137,44 @@ Plug 'godlygeek/tabular'              " Easy aligning
 Plug 'vim-airline/vim-airline'        " Fancy status line as fuck
 Plug 'vim-airline/vim-airline-themes' " Fancy themes for fancy status line
 Plug 'majutsushi/tagbar'              " Tagbar
+Plug 'Raimondi/delimitMate'           " Auto close quotes and etc.
+Plug 'SirVer/ultisnips'               " Ultisnippets configuration
 
 " Themes
 Plug 'tomasr/molokai'
 Plug 'squarefrog/tomorrow-night.vim'
 
-" Languages extensions
-Plug 'scrooloose/syntastic'      " Multi syntax
-Plug 'eagletmt/neco-ghc'         " Haskell completion
-Plug 'jvirtanen/vim-octave'      " Octave completion support
-Plug 'vim-scripts/dbext.vim'     " Databases support
-Plug 'lervag/vimtex'             " LaTeX
-Plug 'tpope/vim-rails'           " Ruby on Rails support
-Plug 'tpope/vim-endwise'         " wisely add 'end' in ruby, endfunction/endif/more in vim script
-Plug 'kchmck/vim-coffee-script'  " Support of Coffee script
-Plug 'vim-ruby/vim-ruby'         " Ruby
-Plug 'cakebaker/scss-syntax.vim' " Sass syntax files
-Plug 'mattn/emmet-vim'           " Make HTML usable
-Plug 'fatih/vim-go'              " Full feature GO support
-Plug 'Shougo/deoplete.nvim'
+" Deoplete as comletion engine
+function! DoRemote(arg)
+  UpdateRemotePlugins
+endfunction
+Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
+Plug 'Shougo/vimproc.vim', { 'do': 'make'}
+Plug 'zchee/deoplete-jedi'
 Plug 'zchee/deoplete-go', { 'do': 'make'}
-Plug 'slim-template/vim-slim'
+
+" Languages extensions
+Plug 'scrooloose/syntastic'               " Multi syntax
+Plug 'eagletmt/neco-ghc'                  " Haskell completion
+Plug 'jvirtanen/vim-octave'               " Octave completion support
+Plug 'vim-scripts/dbext.vim'              " Databases support
+Plug 'lervag/vimtex'                      " LaTeX
+"Plug 'vim-ruby/vim-ruby'                  " Ruby
+Plug 'tpope/vim-rails'                    " Ruby on Rails support
+"Plug 'osyo-manga/vim-monster'             " Really cool ruby completion
+Plug 'tpope/vim-endwise'                  " wisely add 'end' in ruby
+Plug 'kchmck/vim-coffee-script'           " Support of Coffee script
+Plug 'cakebaker/scss-syntax.vim'          " Sass syntax files
+Plug 'mattn/emmet-vim'                    " Make HTML usable
+Plug 'fatih/vim-go'                       " Full feature GO support
+Plug 'slim-template/vim-slim'             " Slim for vim
+Plug 'davidhalter/jedi'                   " Jedi smart completion for python
+Plug 'vim-scripts/dbext.vim'              " SQL Support
 
 " Navigation
 Plug 'scrooloose/nerdtree' " File explorer
-Plug 'kien/ctrlp.vim'      " Fuzzy search for everything
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'   " Fuzzy search for everything
 
 " Uncategorized
 Plug 'airblade/vim-gitgutter'          " Git command supports
@@ -200,10 +205,10 @@ map  <Leader>w <Plug>(easymotion-bd-w)
 nmap <Leader>w <Plug>(easymotion-overwin-w)
 
 "======================================================================
-" CtrlP
+" FZF
 "======================================================================
 
-let g:ctrlp_show_hidden=1
+nmap <leader><tab> :FZF<CR>
 
 "=====================================================================
 " Vimtex
@@ -212,14 +217,35 @@ let g:ctrlp_show_hidden=1
 let g:vimtex_view_method='zathura'
 let g:vimtex_latexmk_progname='nvr'
 let g:vimtex_view_general_viewer='zathura'
+let g:vimtex_fold_manual=1
+let g:vimtex_motion_matchparen=0
+let g:vimtex_quickfix_open_on_warning=0
+let g:vimtex_quickfix_mode=1
+
+"autocmd FileType tex let b:vimtex_main = 'main.tex'
+let g:tex_flavor = 'latex'
+
+if !exists('g:deoplete#omni_patterns')
+      let g:deoplete#omni_patterns = {}
+  endif
+let g:deoplete#omni_patterns.tex =
+    \ '\v\\%('
+    \ . '\a*cite\a*%(\s*\[[^]]*\]){0,2}\s*\{[^}]*'
+    \ . '|\a*ref%(\s*\{[^}]*|range\s*\{[^,}]*%(}\{)?)'
+    \ . '|hyperref\s*\[[^]]*'
+    \ . '|includegraphics\*?%(\s*\[[^]]*\]){0,2}\s*\{[^}]*'
+    \ . '|%(include%(only)?|input)\s*\{[^}]*'
+    \ . '|\a*(gls|Gls|GLS)(pl)?\a*%(\s*\[[^]]*\]){0,2}\s*\{[^}]*'
+    \ . '|includepdf%(\s*\[[^]]*\])?\s*\{[^}]*'
+    \ . '|includestandalone%(\s*\[[^]]*\])?\s*\{[^}]*'
+    \ . ')\m'
 
 "======================================================================
 " Deoplete
 "======================================================================
 
 let g:deoplete#enable_at_startup = 1
-let g:deoplete#sources#go#gocode_binary = $GOPATH.'/bin/gocode'
-let g:deoplete#sources#go#sort_class = ['package', 'func', 'type', 'var', 'const']
+let g:deoplete#auto_complete_delay = 100
 
 set completeopt-=preview
 
@@ -252,6 +278,11 @@ set statusline+=%*gbar
 let g:syntastic_cpp_compiler='clang++'
 let g:syntastic_cpp_compiler_options=' -std=c++11 -stdlib=libc++'
 
+let g:syntastic_ruby_checkers = ['rubocop', 'rubylint']
+
+let g:syntastic_ruby_rubocop_exec = '/home/anton/.gem/ruby/2.3.0/bin/rubocop'
+let g:syntastic_ruby_exec = '/bin/ruby'
+
 "======================================================================
 " NERDTree
 "======================================================================
@@ -274,15 +305,24 @@ let g:go_highlight_build_constraints = 1
 let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
 let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'] }
 
+let g:deoplete#sources#go#gocode_binary = $GOPATH.'/bin/gocode'
+let g:deoplete#sources#go#sort_class = ['package', 'func', 'type', 'var', 'const']
+
 "======================================================================
 " Ruby
 "======================================================================
 
 autocmd Filetype ruby setlocal ts=2 sts=2 sw=2
 autocmd Filetype coffee setlocal ts=2 sts=2 sw=2
+autocmd Filetype slim setlocal ts=2 sts=2 sw=2
 
-let g:rubycomplete_buffer_loading = 1
-let g:rubycomplete_rails = 1
+"let g:rubycomplete_buffer_loading = 1
+"let g:rubycomplete_rails = 1
+
+"let g:monster#completion#rcodetools#backend = "async_rct_complete"
+"let g:deoplete#sources#omni#input_patterns = {
+"\   "ruby" : '[^. *\t]\.\w*\|\h\w*::',
+"\}
 
 "======================================================================
 " Airline

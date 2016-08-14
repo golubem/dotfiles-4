@@ -21,10 +21,19 @@ export EDITOR='nvim'
 export GOPATH=$HOME/workdir/gocode
 export STEAM_RUNTIME=0
 
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/opt/oracle/instantclient_12_1
+
 export PATH="$(ruby -e 'print Gem.user_dir')/bin:$GOPATH/bin:/usr/local/sbin:\
 /usr/local/bin:/usr/bin:/usr/bin/site_perl:/usr/bin/vendor_perl\
 :/usr/bin/core_perl:$HOME/.cabal/bin:/scripts:$HOME/.local/bin"
 
+export TERM=rxvt-unicode-256color
+
+# Importh path for systemd
+systemctl --user set-environment PATH=$PATH
+
 # Aliaces
 alias winmv='convmv -f cp1252 -t cp850 * --notest  && convmv -f cp866 -t utf-8 * --notest'
 alias vpn-kaliwe='sudo openvpn ~/.openvpn/kaliwe.ovpn'
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

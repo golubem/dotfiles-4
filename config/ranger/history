@@ -1,9 +1,3 @@
-set flushinput False
-rename Hunter_X_Hunter_[16_of_62]_[ru_jp]_[MifSnaiper_&_Animereactor_Ru]q.srt
-set preview_images True
-open_with 
-open_with firefox
-open_with `
 set draw_borders
 delete sudo
 sudo rm -rf
@@ -14,9 +8,6 @@ search udis
 mpv
 mkdir 
 tab_new 
-
-delete
-rename
 rename passport_international.jpg
 re
 rename insurance_cert.jpg
@@ -28,3 +19,32 @@ rename passport-18-19.jpg
 pager_move 
 rename lab_8.m
 rename lab_9.m
+mkdir errors
+
+open_with kkk
+search haar
+search pdf
+rm 
+open_with 
+inkscape
+mkdir Plotnikov-diploma
+rename
+open_with e
+rename test
+rename plotnikov-diploma
+deletey
+search arti
+search home
+search god
+help 
+search confi
+search nvim
+search 
+set_e
+search tomo
+search downl
+search med
+search data
+search ph
+cd /run/media/anton/73C5-EA19
+delete

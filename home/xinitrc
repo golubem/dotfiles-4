@@ -11,23 +11,37 @@ kbd.sh -d
 kbdd &
 
 ######################################################################
+# Trackpoint and TouchPad configuration
+######################################################################
+touchpad.sh -d # Disable touchpad
+
+#tpointset() { xinput set-prop "AlpsPS/2 ALPS DualPoint Stick" "$@"; }
+#tpointset "Device Accel Profile" 2 # Set polynomic acceleration profile
+#tpointset "Device Accel Velocity Scaling" 90 # Let accelerate faster
+
+#tpadset() { xinput set-prop "AlpsPS/2 ALPS DualPoint TouchPad" "$@"; }
+#tpadset "Device Accel Constant Deceleration" 1 # Speedup a bit
+
+######################################################################
 # Autostart # TODO: Move to systemd --user
 ######################################################################
 
 pidgin &
 urxvtd &
-#compton &
+compton -c &
 xsetroot -cursor_name left_ptr
 hsetroot -solid '#202020'
-feh --bg-fill ~/.xmonad/wall.png --bg-fill ~/.xmonad/wall.png &
+/scripts/wallaper.sh
 xautolock -time 10 -locker 'lock.sh' &
 #stalonetray &
 udisks-glue -f &
 twmnd &
+redshift &
+unclutter -b &
 
-touchpad.sh -d # Disable touchpad
+/scripts/monitor-daemon-control.rb start
 
 ######################################################################
 # Exec WM
 ######################################################################
-xmonad > ~/.xmonad/pipe
+exec xmonad > ~/.xmonad/pipe

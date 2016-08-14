@@ -2,5 +2,5 @@
 Description=Offlineimap Service
 
 [Service]
-Type=oneshot
-ExecStart=/usr/bin/offlineimap -o -u syslog
+Type=simple
+ExecStart=/usr/bin/offlineimap -o -q -u quiet

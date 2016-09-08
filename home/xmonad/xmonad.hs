@@ -11,6 +11,8 @@ import XMonad.Hooks.ManageDocks
 import XMonad.Actions.CycleWS
 
 import XMonad.Layout.IM                         -- layout for pidgin
+import XMonad.Layout.ResizableTile
+import XMonad.Layout.Reflect
 import XMonad.Layout.Grid                       -- grid layout
 import XMonad.Layout.PerWorkspace
 import XMonad.Layout.Spacing
@@ -87,8 +89,10 @@ myKeys = [ ("M-f",                      sendMessage $ Toggle NBFULL)
          , ("M1-S-h",                   windowSwap L False)
          , ("M1-S-l",                   windowSwap R False)
 
-         , ("M-S-j",                    sendMessage Shrink)
-         , ("M-S-k",                    sendMessage Expand)
+         , ("M-C-h",                    sendMessage Shrink)
+         , ("M-C-l",                    sendMessage Expand)
+         , ("M-C-k",                    sendMessage MirrorShrink)
+         , ("M-C-j",                    sendMessage MirrorExpand)
 
          ---------------------------------------------------------------
          -- Run applications
@@ -163,9 +167,9 @@ myLayout
       named "<icon=grid.xpm/>" grid |||
       named "<icon=full.xpm/>" full
     where
-        pidginLayot = named "<icon=im.xpm/>" $ spacing 4 $ withIM (1%7) (Role "buddy_list") Grid
-        tiled       = spaces $ Tall nmaster delta ratio
-        grid        = spaces Grid
+        pidginLayot = named "<icon=im.xpm/>" $ spaces $ withIM (1%7) (Role "buddy_list") Grid
+        tiled       = spaces $ ResizableTall nmaster delta ratio []
+        grid        = spaces $ Grid
         spaces      = spacing 4
         full        = spaces Full
         nmaster     = 1
